@@ -36,7 +36,7 @@ def get_energy(var):
     shutil.copy("KPOINTS","%s/"%this_name)
     with open("%s/POSCAR"%this_name,"w") as this_pos_file:
         this_pos_file.write(this_pos)
-    os.system("cd %s;vasp 1>/dev/null"%this_name)
+    os.system("cd %s;../vasp 1>/dev/null"%this_name)
     with open("%s/OUTCAR"%this_name,"r") as to_ana_file:
         to_ana=to_ana_file.read()
         temp=to_ana.find("TOTEN",0)
