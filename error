@@ -1,3 +1,7 @@
+
+real	0m32.122s
+user	6m14.158s
+sys	0m48.549s
 perl: warning: Setting locale failed.
 perl: warning: Please check that your locale settings:
 	LANGUAGE = (unset),
@@ -6,6 +10,6 @@ perl: warning: Please check that your locale settings:
     are supported and installed on your system.
 perl: warning: Falling back to the standard locale ("C").
 
-Can't find file /home/hzhang/.vnc/mu01:86.pid
+Can't find file /home/hzhang/.vnc/mu01:89.pid
 You'll have to kill the Xvnc process manually
 

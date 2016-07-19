@@ -50,9 +50,9 @@ def get_energy(var):
     shutil.rmtree(this_name)
     return float(data)
 
-omega=0.1
-phip=0.1
-phig=0.2
+omega=0.3
+phip=0.3
+phig=0.4
 times=10
 
 S=[random.random()*2*h-h for i in range(l)]
@@ -69,12 +69,13 @@ for i in range(times):
         print "#"
         print G
         print GE
-    V=[omega*V[j]+                        \
-        phip*random.random()*(P[j]-S[j])+ \
-        phig*random.random()*(G[j]-S[j])  \
+    V=[omega*V[j]+                             \
+        phip*random.random()*(P[j]-S[j])+      \
+        phig*random.random()*(G[j]-S[j])       \
         for j in range(l)]
     S=[S[j]+V[j] for j in range(l)]
     temp=get_energy(S)
+    #print "%d's change is %s, and now it is %s, energy is %f:"%(comm_rank,repr(V),repr(S),temp)
     if(temp<PE):
         P=[S[i] for i in range(l)]
         PE=temp
