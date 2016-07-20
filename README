@@ -2,6 +2,7 @@
 
 可能有用的问题
 
+- MPI和CPU绑定得如何？
 - 为何用LDA势？
 - vasp能利用附近的WAVECAR么？
 - vasp的编译优化
