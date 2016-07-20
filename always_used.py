@@ -38,7 +38,7 @@ def get_energy(var,tag1,tag2):
         ender=this_pos.find("}")
         to_calc=this_pos[starter+1:ender]
         for i in range(l):
-            to_calc=to_calc.replace(sym_table[i],
+            to_calc=to_calc.replace("(%s)"%sym_table[i],
                 "(%%.%df)"%pp%var[i])
         if re.match(r"^[\d+-/\(\)\*\.]*$",to_calc):
             calc_res="%%.%df"%pp%eval(to_calc)
