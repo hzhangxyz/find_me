@@ -52,71 +52,14 @@ def get_energy(var):
     shutil.rmtree(this_name)
     return float(data)
 
-#一些PSO超参数
-omega=0.3
-phip=0.3
-phig=0.4
-times=10
+times=2
 
-#PSO初始化
-S=[random.random()*2*h-h for i in range(l)]
-V=[random.random()*2*h-h for i in range(l)]
-PE=get_energy(S)
-P=[S[i] for i in range(l)]
-PG=comm.allgather(PE)
-GE=min(PG)
-best=PG.index(GE)
-G=comm.bcast(S if comm_rank == best else None, root=best)
-
-#PSO
 for i in range(times):
-    #下面这段话只是这个branch的事
+    S=[random.random()*2*h-h for i in range(l)]
+    SE=get_energy(S)
     combine_S=comm.gather(S,root=0)
-    if i==0:
-        combine_E=comm.gather(PE,root=0)
-    else:
-        combine_E=comm.gather(temp,root=0)
+    combine_E=comm.gather(SE,root=0)
     if comm_rank==0:
         for j in range(comm_size):
             print combine_S[j]
             print combine_E[j]
-    #下面这个if是master中要输出的
-    """
-    if comm_rank==0:
-        print "#"
-        print G
-        print GE
-    """
-    V=[omega*V[j]+                             \
-        phip*random.random()*(P[j]-S[j])+      \
-        phig*random.random()*(G[j]-S[j])       \
-        for j in range(l)]
-    S=[S[j]+V[j] for j in range(l)]
-    temp=get_energy(S)
-    #下一句是为了测试而已
-    #print "%d's change is %s, and now it is %s, energy is %f:"%(comm_rank,repr(V),repr(S),temp)
-    if(temp<PE):
-        P=[S[i] for i in range(l)]
-        PE=temp
-    PG=comm.allgather(PE)
-    g_temp=min(PG);
-    if(g_temp<GE):
-        GE=g_temp
-        best=PG.index(g_temp)
-        G=comm.bcast(S if comm_rank == best else None, root=best)
-
-combine_S=comm.gather(S,root=0)
-if i==0:
-    combine_E=comm.gather(PE,root=0)
-else:
-    combine_E=comm.gather(temp,root=0)
-if comm_rank==0:
-    for j in range(comm_size):
-        print combine_S[j]
-        print combine_E[j]
-"""
-if comm_rank==0:
-    print "#"
-    print G
-    print GE
-"""
