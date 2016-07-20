@@ -14,4 +14,5 @@ a -1 1
 c -1 1
 d -1 1
 }}
-#pp,omega,phig,phig,times
+pp,omega,phig,phig,times
+双花括号后面全是注释

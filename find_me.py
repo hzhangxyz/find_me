@@ -30,7 +30,7 @@ l=len(raw_sym_table)/3
 sym_table=[raw_sym_table[3*i] for i in range(l)]
 sym_region=[[float(raw_sym_table[3*i+1]),
     float(raw_sym_table[3*i+2])] for i in range(l)]
-to_replace="%s%s"%(pos[:start],pos[end+2:])
+to_replace=pos[:start]
 
 #define evironment
 def get_energy(var):
@@ -70,8 +70,8 @@ def get_energy(var):
 
 S=[random.random()*(sym_region[j][1]-sym_region[j][0])+                         \
    sym_region[j][0] for j in range(l)]
-V=[random.random()*(sym_region[j][1]-sym_region[j][0])+                         \
-   sym_region[j][0] for j in range(l)]
+V=[(2*random.random()-1)*(sym_region[j][1]-sym_region[j][0])                    \
+   for j in range(l)]
 PE=get_energy(S)
 P=[S[i] for i in range(l)]
 PG=comm.allgather(PE)
