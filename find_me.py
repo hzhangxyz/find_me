@@ -34,8 +34,8 @@ sym_region=[[float(raw_sym_table[3*i+1]),
 to_replace=pos[:start]
 
 #define evironment
-def get_energy(var):
-    this_name="try_%f"%random.random()
+def get_energy(var,tag1,tag2):
+    this_name="try_%d_%d"%(tag1,tag2)
     this_pos=to_replace
     while this_pos.find("{")!=-1:
         starter=this_pos.find("{")
@@ -63,19 +63,18 @@ def get_energy(var):
         while(temp!=-1):
              offset=temp+1
              temp=to_ana.find("TOTEN",offset)
-        if offset==0:
+        if offset!=0:
             data=float(to_ana[to_ana.find("=",offset)+1:                        \
                 to_ana.find("eV",offset)].strip())
         else:
             data="100"
-    shutil.rmtree(this_name)
     return float(data)
 
 S=[random.random()*(sym_region[j][1]-sym_region[j][0])+                         \
    sym_region[j][0] for j in range(l)]
 V=[(2*random.random()-1)*(sym_region[j][1]-sym_region[j][0])                    \
    for j in range(l)]
-PE=get_energy(S)
+PE=get_energy(S,comm_rank,-1)
 P=[S[i] for i in range(l)]
 PG=comm.allgather(PE)
 GE=min(PG)
@@ -93,7 +92,7 @@ for i in range(times):
     S=[S[j]+V[j] for j in range(l)]
     S=[S[j] if S[j]<sym_region[j][1] else sym_region[j][1] for j in range(l)]
     S=[S[j] if S[j]>sym_region[j][0] else sym_region[j][0] for j in range(l)]
-    temp=get_energy(S)
+    temp=get_energy(S,comm_rank,i)
     if(temp<PE):
         P=[S[i] for i in range(l)]
         PE=temp
