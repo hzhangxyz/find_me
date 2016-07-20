@@ -1,5 +1,5 @@
 #PBS -N surf_energy
-#PBS -l nodes=1:ppn=20
+#PBS -l nodes=5:ppn=20
 #PBS -l walltime=02:00:00
 #PBS -q prio
 #PBS -o output
@@ -9,4 +9,4 @@ cd $PBS_O_WORKDIR
 I_MPI_DEVICE=rdma
 
 cl
-mpirun -genvall -np 20 python surf_energy.py
+time mpirun -genvall -np 100 python surf_energy.py
