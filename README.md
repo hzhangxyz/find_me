@@ -19,4 +19,3 @@ P：物理
 - PSO：其实我还想试试AA,SA
 - SA：Parallel Tempary是SA在这个项目上的唯一可能
 - AA：AA我到现在还不是很清楚细节怎么破
-
