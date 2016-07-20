@@ -8,4 +8,5 @@
 cd $PBS_O_WORKDIR
 I_MPI_DEVICE=rdma
 
+cl
 mpirun -genvall -np 20 python find_me.py
