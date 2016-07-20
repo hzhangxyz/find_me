@@ -17,10 +17,18 @@ with open("POSCAR","r") as pos_file:
 start=pos.find("{{")
 end=pos.find("}}")
 control=pos[start+2:end].split()
-h=float(control[0])
-pp=int(control[1])
-sym_table=control[2:]
-l=len(sym_table)
+
+pp=int(control[0])
+omega=float(control[1])
+phip=float(control[2])
+phig=float(control[3])
+times=int(control[4])
+
+raw_sym_table=control[5:]
+l=len(raw_sym_table)/3
+sym_table=[raw_sym_table[3*i] for i in range(l)]
+sym_region=[[float(raw_sym_table[3*i+1]),
+    float(raw_sym_table[3*i+2])] for i in range(l)]
 to_replace=pos[:start]
 
 #define evironment
@@ -44,38 +52,35 @@ def get_energy(var):
         while(temp!=-1):
              offset=temp+1
              temp=to_ana.find("TOTEN",offset)
-        data=to_ana[to_ana.find("=",offset)+1:  \
+        data=to_ana[to_ana.find("=",offset)+1:                                  \
             to_ana.find("eV",offset)].strip()
     data=float(data)
     shutil.rmtree(this_name)
     return float(data)
 
-omega=0.3
-phip=0.3
-phig=0.4
-times=10
-
-S=[random.random()*2*h-h for i in range(l)]
-V=[random.random()*2*h-h for i in range(l)]
+S=[random.random()*(sym_region[j][1]-sym_region[j][0])+                         \
+   sym_region[j][0] for j in range(l)]
+V=[random.random()*(sym_region[j][1]-sym_region[j][0])+                         \
+   sym_region[j][0] for j in range(l)]
 PE=get_energy(S)
 P=[S[i] for i in range(l)]
 PG=comm.allgather(PE)
 GE=min(PG)
 best=PG.index(GE)
 G=comm.bcast(S if comm_rank == best else None, root=best)
+if comm_rank==0:
+    print G
+    print GE
 
 for i in range(times):
-    if comm_rank==0:
-        print "#"
-        print G
-        print GE
-    V=[omega*V[j]+                             \
-        phip*random.random()*(P[j]-S[j])+      \
-        phig*random.random()*(G[j]-S[j])       \
+    V=[omega*V[j]+                                                              \
+        phip*random.random()*(P[j]-S[j])+                                       \
+        phig*random.random()*(G[j]-S[j])                                        \
         for j in range(l)]
     S=[S[j]+V[j] for j in range(l)]
+    S=[S[j] if S[j]<sym_region[j][1] else sym_region[j][1] for j in range(l)]
+    S=[S[j] if S[j]>sym_region[j][0] else sym_region[j][0] for j in range(l)]
     temp=get_energy(S)
-    #print "%d's change is %s, and now it is %s, energy is %f:"%(comm_rank,repr(V),repr(S),temp)
     if(temp<PE):
         P=[S[i] for i in range(l)]
         PE=temp
@@ -85,8 +90,6 @@ for i in range(times):
         GE=g_temp
         best=PG.index(g_temp)
         G=comm.bcast(S if comm_rank == best else None, root=best)
-
-if comm_rank==0:
-    print "#"
-    print G
-    print GE
+    if comm_rank==0:
+        print G
+        print GE
