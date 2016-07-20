@@ -1,6 +1,5 @@
 #/usr/bin/env python
 import random
-import re
 import mpi4py.MPI as MPI
 from always_used import *
 
