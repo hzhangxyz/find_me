@@ -1,4 +1,6 @@
 #/usr/bin/env python
+# -*- coding:utf-8 -*-
+
 import os
 import random
 import shutil
@@ -9,11 +11,11 @@ comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()
 
-#read POSCAR
+#读取POSCAR
 with open("POSCAR","r") as pos_file:
     pos=pos_file.read()
 
-#parse POSCAR
+#解析POSCAR
 start=pos.find("{{")
 end=pos.find("}}")
 control=pos[start+2:end].split()
@@ -23,7 +25,7 @@ sym_table=control[2:]
 l=len(sym_table)
 to_replace=pos[:start]
 
-#define evironment
+#调用vasp并解析输出
 def get_energy(var):
     this_name="try_%d"%hash(str(var))
     this_pos=to_replace
@@ -50,11 +52,13 @@ def get_energy(var):
     shutil.rmtree(this_name)
     return float(data)
 
+#一些PSO超参数
 omega=0.3
 phip=0.3
 phig=0.4
 times=10
 
+#PSO初始化
 S=[random.random()*2*h-h for i in range(l)]
 V=[random.random()*2*h-h for i in range(l)]
 PE=get_energy(S)
@@ -64,6 +68,7 @@ GE=min(PG)
 best=PG.index(GE)
 G=comm.bcast(S if comm_rank == best else None, root=best)
 
+#PSO
 for i in range(times):
     #下面这段话只是这个branch的事
     combine_S=comm.gather(S,root=0)
@@ -100,7 +105,18 @@ for i in range(times):
         best=PG.index(g_temp)
         G=comm.bcast(S if comm_rank == best else None, root=best)
 
+combine_S=comm.gather(S,root=0)
+if i==0:
+    combine_E=comm.gather(PE,root=0)
+else:
+    combine_E=comm.gather(temp,root=0)
+if comm_rank==0:
+    for j in range(comm_size):
+        print combine_S[j]
+        print combine_E[j]
+"""
 if comm_rank==0:
     print "#"
     print G
     print GE
+"""
