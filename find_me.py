@@ -35,7 +35,7 @@ to_replace=pos[:start]
 
 #define evironment
 def get_energy(var):
-    this_name="try_%d%d"%(hash(str(var)),hash(str(time.time())))
+    this_name="try_%f"%random.random()
     this_pos=to_replace
     while this_pos.find("{")!=-1:
         starter=this_pos.find("{")
