@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 import os
 import shutil
-import re
 import math
 
 #read POSCAR
@@ -40,10 +39,7 @@ def get_energy(var,tag1,tag2):
         for i in range(l):
             to_calc=to_calc.replace("(%s)"%sym_table[i],
                 "(%%.%df)"%pp%var[i])
-        if re.match(r"^[\d+-/\(\)\*\.]*$",to_calc):
-            calc_res="%%.%df"%pp%eval(to_calc)
-        else:
-            calc_res="%%.%df"%pp%0
+        calc_res="%%.%df"%pp%eval(to_calc)
         this_pos="%s%s%s"%(this_pos[:starter],calc_res,this_pos[ender+1:])
     os.makedirs(this_name)
     shutil.copy("INCAR","%s/INCAR"%this_name)
