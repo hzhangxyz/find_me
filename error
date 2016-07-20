@@ -6,6 +6,6 @@ perl: warning: Please check that your locale settings:
     are supported and installed on your system.
 perl: warning: Falling back to the standard locale ("C").
 
-Can't find file /home/hzhang/.vnc/mu01:11.pid
+Can't find file /home/hzhang/.vnc/mu01:12.pid
 You'll have to kill the Xvnc process manually
 
