@@ -63,9 +63,11 @@ def get_energy(var):
         while(temp!=-1):
              offset=temp+1
              temp=to_ana.find("TOTEN",offset)
-        data=to_ana[to_ana.find("=",offset)+1:                                  \
-            to_ana.find("eV",offset)].strip()
-    data=float(data)
+        if offset==0:
+            data=float(to_ana[to_ana.find("=",offset)+1:                        \
+                to_ana.find("eV",offset)].strip())
+        else:
+            data="100"
     shutil.rmtree(this_name)
     return float(data)
 
