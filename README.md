@@ -1,12 +1,21 @@
+一些意外
+
 可能有用的问题
 
-- MPI和CPU绑定得如何？有子进程？
 - 为何用LDA势？且氢分子。。。0.7->1.2 A
-- vasp的编译优化?DFT层面的优化？(当然，我们只有通过编译参数之类的能力)，比如Gamma Point Only
 - PSO系数的经验参数！！！不然收敛得太慢！！！
 - 库伦矩阵什么鬼，也许是个线索？
-- ML与PSO联合优化,ML指导PSO的方向
-- PSO的原理，phig,phip？两次ML(g,p)替代两个方向(g,p)？
-- 其实我还想试试AA,SA
-- DFT与PSO联合优化,不浪费其他地方的WAVECAR,以及微扰
-- 物理因素优化，研究一下能量曲面的结构，联系微扰
+
+- C：MPI和CPU绑定得如何？有子进程？
+- DFT-P：vasp的编译优化?DFT层面的优化？(当然，我们只有通过编译参数之类的能力)，比如Gamma Point Only
+- PSO-DFT：DFT与PSO联合优化,不浪费其他地方的WAVECAR,以及微扰
+- PSO-DFT：物理因素优化，研究一下能量曲面的结构，联系微扰
+- ML-PSO：ML与PSO联合优化,ML指导PSO的方向
+- ML-PSO：PSO的原理，phig,phip？两次ML(g,p)替代两个方向(g,p)？
+- PSO：其实我还想试试AA,SA
+
+C：计算机
+ML：机器学习
+PSO：粒子群
+DFT：密度泛函
+P：物理
