@@ -3,6 +3,7 @@ import os
 import random
 import shutil
 import re
+import time
 import subprocess as sp
 import mpi4py.MPI as MPI
 
@@ -34,7 +35,7 @@ to_replace=pos[:start]
 
 #define evironment
 def get_energy(var):
-    this_name="try_%d"%hash(str(var))
+    this_name="try_%d%d"%(hash(str(var)),hash(str(time.time())))
     this_pos=to_replace
     while this_pos.find("{")!=-1:
         starter=this_pos.find("{")
