@@ -1,5 +1,4 @@
 #/usr/bin/env python
-# -*- coding:utf-8 -*-
 
 import os
 import random
@@ -11,11 +10,9 @@ comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()
 
-#读取POSCAR
 with open("POSCAR","r") as pos_file:
     pos=pos_file.read()
 
-#解析POSCAR
 start=pos.find("{{")
 end=pos.find("}}")
 control=pos[start+2:end].split()
@@ -25,7 +22,6 @@ sym_table=control[2:]
 l=len(sym_table)
 to_replace=pos[:start]
 
-#调用vasp并解析输出
 def get_energy(var):
     this_name="try_%d"%hash(str(var))
     this_pos=to_replace
