@@ -56,7 +56,7 @@ def get_energy(var):
 omega=0.3
 phip=0.3
 phig=0.4
-times=10
+times=2
 
 #PSO初始化
 S=[random.random()*2*h-h for i in range(l)]
