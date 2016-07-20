@@ -10,8 +10,8 @@ cart
 {(a)} 0.00 0.00
 {(a)*math.cos((t))} {(a)*math.sin((t))} 0.00
 {{2 0.3 0.3 0.4 100
-a 0 2
-t 0 3.14
+a 0.1 2
+t 0.1 3.2
 }}
 pp,omega,phig,phig,times
 双花括号后面全是注释
