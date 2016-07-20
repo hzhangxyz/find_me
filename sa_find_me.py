@@ -1,6 +1,6 @@
 #/usr/bin/env python
+import math
 import random
-import re
 #import mpi4py.MPI as MPI
 from always_used import *
 """
@@ -8,42 +8,26 @@ comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()
 """
-#pso init
 
 S=[random.random()*(sym_region[j][1]-sym_region[j][0])+                         \
    sym_region[j][0] for j in range(l)]
-V=[(2*random.random()-1)*(sym_region[j][1]-sym_region[j][0])                    \
-   for j in range(l)]
-PE=get_energy(S,comm_rank,-1)
-P=[S[i] for i in range(l)]
-PG=comm.allgather(PE)
-GE=min(PG)
-best=PG.index(GE)
-G=comm.bcast(S if comm_rank == best else None, root=best)
-if comm_rank==0:
-    print G
-    print GE
+E=get_energy(S,comm_rank,-1)
+print S
+print E
 
-#pso!
+T=1
+t=0.1
+a=0.9
+h=0.1
 
-for i in range(times):
-    V=[omega*V[j]+                                                              \
-        phip*random.random()*(P[j]-S[j])+                                       \
-        phig*random.random()*(G[j]-S[j])                                        \
-        for j in range(l)]
-    S=[S[j]+V[j] for j in range(l)]
-    S=[S[j] if S[j]<sym_region[j][1] else sym_region[j][1] for j in range(l)]
-    S=[S[j] if S[j]>sym_region[j][0] else sym_region[j][0] for j in range(l)]
-    temp=get_energy(S,comm_rank,i)
-    if(temp<PE):
-        P=[S[i] for i in range(l)]
-        PE=temp
-    PG=comm.allgather(PE)
-    g_temp=min(PG);
-    if(g_temp<GE):
-        GE=g_temp
-        best=PG.index(g_temp)
-        G=comm.bcast(S if comm_rank == best else None, root=best)
-    if comm_rank==0:
-        print G
-        print GE
+while T>t:
+    T*=t
+    SS=[S[j]+h*(random.random()-0.5) for j in range(l)]
+    SS=[SS[j] if SS[j]<sym_region[j][1] else sym_region[j][1] for j in range(l)]
+    SS=[SS[j] if SS[j]>sym_region[j][0] else sym_region[j][0] for j in range(l)]
+    EE=get_energy(SS)
+    if random.random()<=math.exp((EE-E)/T):
+        E=EE
+        S=SS
+    print S
+    print E
