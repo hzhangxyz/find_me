@@ -1,4 +1,4 @@
-#PBS -N find_me
+#PBS -N surf_energy
 #PBS -l nodes=1:ppn=20
 #PBS -l walltime=02:00:00
 #PBS -q prio
@@ -9,4 +9,4 @@ cd $PBS_O_WORKDIR
 I_MPI_DEVICE=rdma
 
 cl
-mpirun -genvall -np 20 python find_me.py
+mpirun -genvall -np 20 python surf_energy.py

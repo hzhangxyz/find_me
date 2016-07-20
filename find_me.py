@@ -12,10 +12,12 @@ comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()
 
 #read POSCAR
+
 with open("POSCAR","r") as pos_file:
     pos=pos_file.read()
 
 #parse POSCAR
+
 start=pos.find("{{")
 end=pos.find("}}")
 control=pos[start+2:end].split()
@@ -33,7 +35,8 @@ sym_region=[[float(raw_sym_table[3*i+1]),
     float(raw_sym_table[3*i+2])] for i in range(l)]
 to_replace=pos[:start]
 
-#define evironment
+#use vasp and parse result
+
 def get_energy(var,tag1,tag2):
     this_name="try_%d_%d"%(tag1,tag2)
     this_pos=to_replace
@@ -70,6 +73,8 @@ def get_energy(var,tag1,tag2):
             data="100"
     return float(data)
 
+#pso init
+
 S=[random.random()*(sym_region[j][1]-sym_region[j][0])+                         \
    sym_region[j][0] for j in range(l)]
 V=[(2*random.random()-1)*(sym_region[j][1]-sym_region[j][0])                    \
@@ -83,6 +88,8 @@ G=comm.bcast(S if comm_rank == best else None, root=best)
 if comm_rank==0:
     print G
     print GE
+
+#pso!
 
 for i in range(times):
     V=[omega*V[j]+                                                              \
