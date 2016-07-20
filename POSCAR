@@ -14,8 +14,4 @@ a -1 1
 c -1 1
 d -1 1
 }}
-#小数位数，omega，phig，phig，times
-#后面是变量
-#要改进的：
-#{}内支持表达式
-#支持一核多粒子
+#pp,omega,phig,phig,times

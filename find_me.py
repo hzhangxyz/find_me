@@ -2,6 +2,7 @@
 import os
 import random
 import shutil
+import re
 import subprocess as sp
 import mpi4py.MPI as MPI
 
@@ -29,15 +30,24 @@ l=len(raw_sym_table)/3
 sym_table=[raw_sym_table[3*i] for i in range(l)]
 sym_region=[[float(raw_sym_table[3*i+1]),
     float(raw_sym_table[3*i+2])] for i in range(l)]
-to_replace=pos[:start]
+to_replace="%s%s"%(pos[:start],pos[end+2:])
 
 #define evironment
 def get_energy(var):
     this_name="try_%d"%hash(str(var))
     this_pos=to_replace
-    for i in range(len(sym_table)):
-        this_pos=this_pos.replace("{%s}"%sym_table[i],
-            "%%.%df"%pp%var[i])
+    while this_pos.find("{")!=-1:
+        starter=this_pos.find("{")
+        ender=this_pos.find("}")
+        to_calc=this_pos[starter+1:ender]
+        for i in range(l):
+            to_calc=to_calc.replace(sym_table[i],
+                "(%%.%df)"%pp%var[i])
+        if re.match(r"^[\d+-/\(\)\*\.]*$",to_calc):
+            calc_res="%%.%df"%pp%eval(to_calc)
+        else:
+            calc_res="%%.%df"%pp%0
+        this_pos="%s%s%s"%(this_pos[:starter],calc_res,this_pos[ender+1:])
     os.makedirs(this_name)
     shutil.copy("INCAR","%s/INCAR"%this_name)
     shutil.copy("POTCAR","%s/POTCAR"%this_name)
