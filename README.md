@@ -48,3 +48,6 @@ http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.115.205901
 
 # DFT
 前期替代：EAM Stillinger-Weber potential
+
+# P
+前期：分子，而非晶体
