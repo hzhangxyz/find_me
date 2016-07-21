@@ -34,15 +34,15 @@ ML与PSO联合优化,ML指导PSO的方向
 PSO的原理?phig,phip？两次ML(g,p)替代两个方向(g,p)？
 
 # PSO
-其实我还想试试AA,SA
+其实我还想试试GA,SA
 
 # SA
 Parallel Tempary是SA在这个项目上的唯一可能
 
-# AA
-AA我到现在还不是很清楚细节怎么破
+# GA
+GA我到现在还不是很清楚细节怎么破
 
-# ML-PSO/SA/AA
+# ML-PSO/SA/GA
 Bayesian optimization
 https://en.wikipedia.org/wiki/Bayesian_optimization
 http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.115.205901
