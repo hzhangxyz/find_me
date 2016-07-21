@@ -45,3 +45,6 @@ AA我到现在还不是很清楚细节怎么破
 Bayesian optimization
 https://en.wikipedia.org/wiki/Bayesian_optimization
 http://journals.aps.org/prl/abstract/10.1103/PhysRevLett.115.205901
+
+# DFT
+前期替代：EAM Stillinger-Weber potential
