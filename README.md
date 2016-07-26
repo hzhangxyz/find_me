@@ -42,10 +42,13 @@ Parallel Tempary是SA在这个项目上的唯一可能
 GA我到现在还不是很清楚细节怎么破
 
 # ML-PSO/SA/GA
-Bayesian optimization
+Bayesian optimization ;
+实际上BO给了我多余的信息，肯定不是最小值处的信息
 
 # DFT
-前期替代：EAM Stillinger-Weber potential
+前期替代：
+EAM
+Stillinger-Weber potential
 
 # P
 前期：分子，而非晶体
