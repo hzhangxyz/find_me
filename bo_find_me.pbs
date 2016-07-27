@@ -7,7 +7,7 @@
 
 cd $PBS_O_WORKDIR
 export I_MPI_DEVICE=rdma
-export DEBUG=T
+export DEBUG=F
 
 cl
 time mpirun -genvall -np 20 python bo_find_me.py
