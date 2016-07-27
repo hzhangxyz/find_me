@@ -1,4 +1,5 @@
 #/usr/bin/env python
+import os
 import random
 import mpi4py.MPI as MPI
 from always_used import *
@@ -19,7 +20,13 @@ PG=comm.allgather(PE)
 GE=min(PG)
 best=PG.index(GE)
 G=comm.bcast(S if comm_rank == best else None, root=best)
-if comm_rank==0:
+DEBUG=os.getenv("DEBUG")=="T"
+if DEBUG:
+    to_print_S=comm.gather(S, root=0)
+    to_print_temp=comm.gather(PE, root=0)
+    if comm_rank==0:
+        print [to_print_S,to_print_temp]
+elif comm_rank==0:
     print G
     print GE
 
@@ -43,6 +50,11 @@ for i in range(times):
         GE=g_temp
         best=PG.index(g_temp)
         G=comm.bcast(S if comm_rank == best else None, root=best)
-    if comm_rank==0:
+    if DEBUG:
+        to_print_S=comm.gather(S, root=0)
+        to_print_temp=comm.gather(temp, root=0)
+        if comm_rank==0:
+            print [to_print_S,to_print_temp]
+    elif comm_rank==0:
         print G
         print GE

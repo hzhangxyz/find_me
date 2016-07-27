@@ -6,7 +6,7 @@
 #PBS -e error
 
 cd $PBS_O_WORKDIR
-I_MPI_DEVICE=rdma
+export I_MPI_DEVICE=rdma
 
 cl
 time mpirun -genvall -np 100 python surf_energy.py
