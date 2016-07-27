@@ -27,8 +27,9 @@ phip=float(control[2])
 phig=float(control[3])
 times=int(control[4])
 core=int(control[5])
+moe_url=control[6]
 
-raw_sym_table=control[6:]
+raw_sym_table=control[7:]
 l=len(raw_sym_table)/3
 sym_table=[raw_sym_table[3*i] for i in range(l)]
 sym_region=[[float(raw_sym_table[3*i+1]),

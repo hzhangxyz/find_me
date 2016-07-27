@@ -18,9 +18,6 @@ DEBUG=os.getenv("DEBUG")=="T"
 if comm_rank==0:
     data=[]
 for i in range(times):
-    if DEBUG and comm_rank==0:
-        print i
-        print i
     if comm_rank==0:
         to_send={u'domain_info':                                                \
                  {u'dim': l,                                                    \
@@ -30,10 +27,7 @@ for i in range(times):
                  u'gp_historical_info':                                         \
                  {u'points_sampled':data},                                      \
                  u'num_to_sample': core}
-        if DEBUG:
-            print "to_send"
-            print to_send
-        send=urllib.urlopen("http://192.168.1.100:6543/gp/next_points/epi",
+        send=urllib.urlopen("http://%s/gp/next_points/epi"%moe_url,
                             json.dumps(to_send))
         if send.code==200:
             to_get=send.read()
@@ -44,8 +38,7 @@ for i in range(times):
             to_bcast=[[random.random()*(sym_region[j][1]-sym_region[j][0])+     \
                       sym_region[j][0] for j in range(l)] for k in range(core)]
         if DEBUG:
-            print "to_bcast"
-            print to_bcast
+            print "################"
     post_res=comm.bcast(to_bcast if comm_rank==0 else None, root=0)
     s=map(float,post_res[comm_rank])
     e=get_energy(s,comm_rank,i)
