@@ -18,6 +18,8 @@ DEBUG=os.getenv("DEBUG")=="T"
 if comm_rank==0:
     data=[]
 for i in range(times):
+    if DEBUG and comm_rank==0:
+        print i
     if comm_rank==0:
         to_send={u'domain_info':                                                    \
                  {u'dim': l,                                                        \
@@ -38,6 +40,5 @@ for i in range(times):
     e=get_energy(s,comm_rank,i)
     gatherer=comm.gather({u'value_var': 0.0, u'value': e, u'point': s})
     if comm_rank==0:
+        print gatherer
         data+=gatherer
-if comm_rank==0:
-    print data
