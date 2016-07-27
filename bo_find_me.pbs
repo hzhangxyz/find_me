@@ -10,4 +10,4 @@ export I_MPI_DEVICE=rdma
 export DEBUG=F
 
 cl
-time python bo_find_me.py
+time python bo_nmpi_find_me.py
