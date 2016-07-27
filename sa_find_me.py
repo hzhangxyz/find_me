@@ -1,4 +1,6 @@
-#/usr/bin/env python
+#!/usr/bin/env python
+# not usable
+
 import math
 import random
 #import mpi4py.MPI as MPI
