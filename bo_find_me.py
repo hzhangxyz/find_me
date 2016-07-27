@@ -11,6 +11,8 @@ comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()
 
+DEBUG=os.getenv("DEBUG")=="T"
+
 #bo
 
 if comm_rank==0:
@@ -20,7 +22,7 @@ for i in range(times):
         to_send={u'domain_info':                                                    \
                  {u'dim': l,                                                        \
                   u'domain_bounds':                                                 \
-                  [{u'max': i[1], u'min': i[0]} for j in sym_region]                \
+                  [{u'max': j[1], u'min': j[0]} for j in sym_region]                \
                  },                                                                 \
                  u'gp_historical_info':                                             \
                  {u'points_sampled':data},                                          \
