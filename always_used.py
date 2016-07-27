@@ -1,4 +1,11 @@
 #!/usr/bin/env python
+# this file is interface to VASP
+# require file:
+# INCAR,POTCAR,KPOINTS,POSCAR
+# INCAR and KPOINTS should be the same with this repo
+# POTCAR depends on the system to calculate
+# POSCAR has different syntax with VASP
+
 import os
 import shutil
 import math
