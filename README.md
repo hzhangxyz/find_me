@@ -43,7 +43,6 @@ GA我到现在还不是很清楚细节怎么破
 
 # ML-PSO/SA/GA
 Bayesian optimization ;
-实际上BO给了我多余的信息，肯定不是最小值处的信息
 
 # DFT
 前期替代：
