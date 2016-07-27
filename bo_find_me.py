@@ -35,7 +35,7 @@ for i in range(times):
         send.close()
     post_res=comm.bcast(to_get["points_to_sample"] if comm_rank==0 else None, root=0)
     s=map(float,post_res[comm_rank])
-    e=get_energy(s,comm_rank,0)
+    e=get_energy(s,comm_rank,i)
     gatherer=comm.gather({u'value_var': 0.0, u'value': e, u'point': s})
     if comm_rank==0:
         data+=gatherer
