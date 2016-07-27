@@ -52,3 +52,6 @@ Stillinger-Weber potential
 
 # P
 前期：分子，而非晶体
+
+# BO
+自己尝试取多点，要涉及GP
