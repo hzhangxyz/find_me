@@ -36,7 +36,7 @@ to_replace=pos[:start]
 
 #use vasp and parse result
 
-def get_energy(var,tag1,tag2):
+def get_energy_vasp(var,tag1,tag2):
     this_name="try_%d_%d"%(tag1,tag2)
     this_pos=to_replace
     while this_pos.find("{")!=-1:
@@ -68,3 +68,5 @@ def get_energy(var,tag1,tag2):
         else:
             data="100"
     return float(data)
+
+get_energy=get_energy_vasp
