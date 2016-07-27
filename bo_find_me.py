@@ -20,22 +20,33 @@ if comm_rank==0:
 for i in range(times):
     if DEBUG and comm_rank==0:
         print i
+        print i
     if comm_rank==0:
-        to_send={u'domain_info':                                                    \
-                 {u'dim': l,                                                        \
-                  u'domain_bounds':                                                 \
-                  [{u'max': j[1], u'min': j[0]} for j in sym_region]                \
-                 },                                                                 \
-                 u'gp_historical_info':                                             \
-                 {u'points_sampled':data},                                          \
+        to_send={u'domain_info':                                                \
+                 {u'dim': l,                                                    \
+                  u'domain_bounds':                                             \
+                  [{u'max': j[1], u'min': j[0]} for j in sym_region]            \
+                 },                                                             \
+                 u'gp_historical_info':                                         \
+                 {u'points_sampled':data},                                      \
                  u'num_to_sample': core}
-        send=urllib.urlopen("http://127.0.0.1:6543/gp/next_points/epi",
-                            json.dumps(to_send))
-        to_get=json.loads(send.read())
         if DEBUG:
-            print to_get
-        send.close()
-    post_res=comm.bcast(to_get["points_to_sample"] if comm_rank==0 else None, root=0)
+            print "to_send"
+            print to_send
+        send=urllib.urlopen("http://192.168.1.100:6543/gp/next_points/epi",
+                            json.dumps(to_send))
+        if send.code==200:
+            to_get=send.read()
+            send.close()
+            to_bcast=json.loads(to_get)["points_to_sample"]
+        else:
+            send.close()
+            to_bcast=[[random.random()*(sym_region[j][1]-sym_region[j][0])+     \
+                      sym_region[j][0] for j in range(l)] for k in range(core)]
+        if DEBUG:
+            print "to_bcast"
+            print to_bcast
+    post_res=comm.bcast(to_bcast if comm_rank==0 else None, root=0)
     s=map(float,post_res[comm_rank])
     e=get_energy(s,comm_rank,i)
     gatherer=comm.gather({u'value_var': 0.0, u'value': e, u'point': s})
