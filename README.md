@@ -8,7 +8,7 @@ master 里不要改POSCAR和POTCAR
 
 master merge 开发分支
 
-test 分支 merge 开发分支与材料分支
+test 分支在开发分支基础上 checkout 材料分支的 POSCAR和 POTCAR
 
 ---
 
