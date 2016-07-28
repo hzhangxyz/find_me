@@ -10,7 +10,12 @@ DEBUG=os.getenv("DEBUG")=="T"
 
 #bo
 
-data=[]
+try:
+    of=open("output","r")
+    data=eval(of.read())
+    of.close()
+except:
+    data=[]
 for i in range(times):
     to_send={u'domain_info':                                                    \
              {u'dim': l,                                                        \
@@ -36,5 +41,7 @@ for i in range(times):
     s=map(float,post_res)
     e=get_energy(s,0,i)
     gatherer={u'value_var': 0.0, u'value': e, u'point': s}
-    print gatherer
+    #print gatherer
     data.append(gatherer)
+
+print data
