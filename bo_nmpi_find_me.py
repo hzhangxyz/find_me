@@ -13,9 +13,11 @@ DEBUG=os.getenv("DEBUG")=="T"
 try:
     of=open("output","r")
     data=eval(of.read())
+    base=len(data)
     of.close()
 except:
     data=[]
+    base=0
 for i in range(times):
     to_send={u'domain_info':                                                    \
              {u'dim': l,                                                        \
@@ -39,7 +41,7 @@ for i in range(times):
         print "################"
     post_res=to_bcast[0]
     s=map(float,post_res)
-    e=get_energy(s,0,i)
+    e=get_energy(s,0,i+base)
     gatherer={u'value_var': 0.0, u'value': e, u'point': s}
     #print gatherer
     data.append(gatherer)

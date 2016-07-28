@@ -19,4 +19,7 @@ def box_count(e):
         d.add(which_box(i,r))
     return len(d)
 
-print map(box_count,range(10))
+#print map(box_count,range(10))
+
+ll=[i[1] for i in data]
+print ll.index(min(ll))
