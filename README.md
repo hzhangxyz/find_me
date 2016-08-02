@@ -16,11 +16,11 @@ test 分支在开发分支基础上 checkout 材料分支的 POSCAR和 POTCAR
 
 ## DFT-PHY
 
-！vasp的编译优化?比如Gamma Point Only
+！vasp的编译优化?比如Gamma Point Only（找老师/师兄吧，累死了）
 
 ## OA-DFT
 
-！充分理由VASP的输出（包括弛豫）
+！充分理由VASP的输出，包括弛豫(调研vasp)
 
 ！不浪费其他地方的WAVECAR，以及微扰
 
