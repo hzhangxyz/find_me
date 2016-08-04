@@ -20,7 +20,9 @@ test 分支在开发分支基础上 checkout 材料分支的 POSCAR和 POTCAR
 
 ## OA-DFT
 
-！充分理由VASP的输出，包括弛豫(调研vasp)
+！不完全计算vasp
+
+！充分利用VASP的输出，包括弛豫(调研vasp)
 
 ！不浪费其他地方的WAVECAR，以及微扰
 
