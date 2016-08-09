@@ -1,3 +1,0 @@
-#!/bin/sh
-cd $1
-grep TOTEN OUTCAR | tail -n 1
