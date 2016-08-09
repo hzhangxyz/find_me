@@ -3,6 +3,7 @@
   "main-file"       : "spearmint_link.py",
   "experiment-name" : "spearmint_test",
   "likelihood"      : "NOISELESS",
+  "max-concurrent"  : 3,
   "variables" : {
     "a" : {
       "type" : "FLOAT",
