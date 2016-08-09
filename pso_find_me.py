@@ -6,8 +6,6 @@ import random
 import mpi4py.MPI as MPI
 from shared import get_energy,dim,sym_region,times,omega,phip,phig
 
-os.system("rm try* -rf")
-
 comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
 comm_size = comm.Get_size()

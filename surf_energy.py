@@ -1,12 +1,9 @@
 #!/usr/bin/env python
 #
 
-import os
 import random
 import mpi4py.MPI as MPI
 from shared import dim,times,sym_region,get_energy
-
-os.system("rm try* -rf")
 
 comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
