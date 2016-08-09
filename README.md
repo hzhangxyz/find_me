@@ -1,17 +1,3 @@
-# TIPS
-
-master 里不要改POSCAR和POTCAR
-
-材料分支 只改POSCAR和POTCAR 然后merge master
-
-开发分支 不改POSCAR POTCAR
-
-master merge 开发分支
-
-test 分支在开发分支基础上 checkout 材料分支的 POSCAR和 POTCAR
-
----
-
 # TODO
 
 ## DFT-PHY
@@ -40,4 +26,10 @@ PSO的原理?phig,phip？两次ML(g,p)替代两个方向(g,p)？
 
 ！随机过程/高斯过程
 
-！调研BO的优势
+！ Spearmint的Config参数，集群处理，文档太少了
+
+！ Spearmint的分离化，是否持续计算？那么分离是否浪费效率？
+
+！ Spearmint处理多余数据(VASP的弛豫）
+
+！ Spearmint - Vasp - 结构变化 集成
