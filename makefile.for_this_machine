@@ -146,7 +146,7 @@ MKL_FFTW_PATH=$(MKLROOT)/interfaces/fftw3xf/
 # setting -DRPROMU_DGEMV  -DRACCMU_DGEMV in the CPP lines usually speeds up program execution
 # BLAS= -Wl,--start-group $(MKL_PATH)/libmkl_intel_lp64.a $(MKL_PATH)/libmkl_intel_thread.a $(MKL_PATH)/libmkl_core.a -Wl,--end-group -lguide 
 # faster linking and available from at least version 11
-BLAS= -liomp5  -mkl 
+BLAS= -L/opt/intel/composer_xe_2013.1.117/mkl/lib/intel64 -lmkl_intel_lp64 -lmkl_core -lmkl_sequential -lpthread 
 
 
 # LAPACK, use vasp.5.lib/lapack_double
