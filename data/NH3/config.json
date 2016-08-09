@@ -1,0 +1,46 @@
+{
+  "language"        : "PYTHON",
+  "main-file"       : "spearmint_link.py",
+  "experiment-name" : "NH3",
+  "likelihood"      : "NOISELESS",
+  "max-concurrent"  : 3,
+  "variables" : {
+    "a" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : 0.1,
+      "max"  : 2
+    },
+    "b" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "c" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : 0.1,
+      "max"  : 2
+    },
+    "d" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "e" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "f" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : 0.1,
+      "max"  : 2
+    }
+  }
+}
+
