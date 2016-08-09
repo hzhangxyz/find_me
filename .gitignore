@@ -2,5 +2,6 @@
 /error
 /POTCAR
 /POSCAR
+/config.json
 /try_*
 *.pyc

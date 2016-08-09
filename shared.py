@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#
 
 import os
 import shutil
@@ -50,6 +51,7 @@ def get_energy_vasp(var,tag1,tag2):
                 "(%%.%df)"%precision%var[i])
         calc_res="%%.%df"%precision%eval(to_calc)
         this_pos="%s%s%s"%(this_pos[:starter],calc_res,this_pos[ender+1:])
+    shutil.rmtree(this_name,ignore_errors=True)
     os.makedirs(this_name)
     shutil.copy("INCAR","%s/INCAR"%this_name)
     shutil.copy("POTCAR","%s/POTCAR"%this_name)
