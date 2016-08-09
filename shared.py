@@ -30,9 +30,9 @@ cores = int(get_param("cores"))
 
 raw_sym_table=control[control.index("vars")+1:]
 dim=len(raw_sym_table)/3
-sym_table=[raw_sym_table[3*i] for i in range(l)]
+sym_table=[raw_sym_table[3*i] for i in range(dim)]
 sym_region=[[float(raw_sym_table[3*i+1]),
-    float(raw_sym_table[3*i+2])] for i in range(l)]
+    float(raw_sym_table[3*i+2])] for i in range(dim)]
 
 to_replace=pos[:start]
 
@@ -45,7 +45,7 @@ def get_energy_vasp(var,tag1,tag2):
         starter=this_pos.find("{")
         ender=this_pos.find("}")
         to_calc=this_pos[starter+1:ender]
-        for i in range(l):
+        for i in range(dim):
             to_calc=to_calc.replace("(%s)"%sym_table[i],
                 "(%%.%df)"%precision%var[i])
         calc_res="%%.%df"%precision%eval(to_calc)
