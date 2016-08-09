@@ -1,4 +1,6 @@
 output
 error
+POTCAR
+POSCAR
 try_*
 *.pyc
