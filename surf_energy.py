@@ -1,7 +1,7 @@
 #/usr/bin/env python
 import random
 import mpi4py.MPI as MPI
-from always_used import *
+from shared import *
 
 comm = MPI.COMM_WORLD
 comm_rank = comm.Get_rank()
