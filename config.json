@@ -1,7 +1,7 @@
 {
     "language"        : "PYTHON",
-    "main-file"       : "branin.py",
-    "experiment-name" : "simple-braninhoo-example",
+    "main-file"       : "spearmint_link.py",
+    "experiment-name" : "spearmint_test",
     "likelihood"      : "NOISELESS",
     "variables" : {
         "x" : {
