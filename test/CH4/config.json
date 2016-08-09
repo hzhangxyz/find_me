@@ -1,7 +1,7 @@
 {
   "language"        : "PYTHON",
   "main-file"       : "spearmint_link.py",
-  "experiment-name" : "NH3",
+  "experiment-name" : "CH4",
   "likelihood"      : "NOISELESS",
   "max-concurrent"  : 3,
   "variables" : {

@@ -1,7 +1,7 @@
 {
   "language"        : "PYTHON",
   "main-file"       : "spearmint_link.py",
-  "experiment-name" : "spearmint_test",
+  "experiment-name" : "H2O",
   "likelihood"      : "NOISELESS",
   "max-concurrent"  : 3,
   "variables" : {
