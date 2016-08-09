@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#
 
 from shared import get_energy,sym_table,dim
 
