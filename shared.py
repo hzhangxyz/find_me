@@ -19,7 +19,7 @@ def get_param(name):
         ans = control[control.index(name)+1]
         return ans
     except:
-        return None
+        return 0
 
 omega = float(get_param("omega"))
 phip = float(get_param("phip"))
