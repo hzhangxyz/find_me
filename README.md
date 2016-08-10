@@ -34,7 +34,7 @@ PSO的原理?phig,phip？两次ML(g,p)替代两个方向(g,p)？
 
 ！ Spearmint - Vasp - 结构变化 集成
 
-# OPT
+## OPT
 
 ！ basin hopping
 
