@@ -38,4 +38,4 @@ PSO的原理?phig,phip？两次ML(g,p)替代两个方向(g,p)？
 
 ！ basin hopping
 
-！ AIRSS
+！ AIRSS(https://arxiv.org/pdf/1101.3987v1.pdf)
