@@ -31,7 +31,7 @@ Find_me is optimization software for minimum energy structure **under developmen
           <li><a href=#code>Code</a></li>
           <li><a href=#test>Test</a></li>
           <li><a href=#attention-1>Attention</a></li>
-          <li><a href=some-test-output>Some Test Output</a></li>
+          <li><a href=#some-test-output>Some Test Output</a></li>
         </ul>
       </li>
     </ul>
