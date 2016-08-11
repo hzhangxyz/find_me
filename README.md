@@ -169,15 +169,25 @@ then you get the output energy for each step
 #### Attention
 - Spearmint require pymongo, numpy, scipy and mongdb.
 
-#### Some output
+#### Some Test Output
 
-H2O(3 param)
+##### H2O(3 param)
+
+The true energy is -14.224 eV, find_me find -14.056 eV.
 
 ![H2O](https://raw.githubusercontent.com/zh19970205/find_me/master/images/H2O.bmp)
 
-NH3(6 param)
+##### NH3(6 param)
+
+The true energy is -19.246,find_me find -19.259 eV.
 
 ![NH3](https://raw.githubusercontent.com/zh19970205/find_me/master/images/NH3.bmp)
+
+##### CH4(9 param)
+
+The true energy is -23.678 eV.
+
+Calculating...
 
 x axis is iteration step and y axis is energy(eV).
 
