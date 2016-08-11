@@ -2,6 +2,45 @@
 
 Find_me is optimization software for minimum energy structure **under development**.
 
+## Content
+
+<ul>
+  <li>
+    Our Goal
+  </li>
+  <li>
+    Did And Test
+    <ul>
+      <li>
+        A wrap for VASP
+        <ul>
+          <li>A Test</li>
+          <li>instruction for POSCAR</li>
+          <li>Attention</li>
+        </ul>
+      </li>
+      <li>
+        link with PSO
+      </li>
+      <li>
+        random search
+      </li>
+      <li>
+        link with Spearmint
+        <ul>
+          <li>Code</li>
+          <li>Test</li>
+          <li>Attention</li>
+          <li>Some Test Output</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    TODO
+  </li>
+</ul>
+
 ## Our Goal
 
 Input element and atoms number, 
