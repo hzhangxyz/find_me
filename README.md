@@ -23,7 +23,7 @@ Find_me is optimization software for minimum energy structure **under developmen
         link with PSO
       </li>
       <li>
-        random search
+        link with random search
       </li>
       <li>
         link with Spearmint
@@ -146,7 +146,7 @@ and set times 3 and cores 3 in POSCAR, and
 ```
 it will output parameters and energy of the observed minimum energy structure for each time.
 
-### random search
+### link with random search
 
 the code is in [surf_energy.py](https://github.com/zh19970205/find_me/blob/master/surf_energy.py), Just for test. You can ignore it. 
 
