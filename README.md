@@ -247,3 +247,4 @@ This balance is maintained automatically in Bayesian Optimization.
 - integrated dft and opt(OK, Think too much)
 - Basin Hopping?
 - AIRSS?
+- prior probability with EAM,... ?
