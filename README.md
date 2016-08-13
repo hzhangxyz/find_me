@@ -236,17 +236,19 @@ This balance is maintained automatically in Bayesian Optimization.
 
 ## TODO
 
-- Compiling Optimization for VASP(Gamma Point Only)
-- Other OM combined with ML?(PSO?)
-- Can Spearmint be separated more with VASP?
-- integrated dft and opt(OK, Think too much)
-- Basin Hopping?
-- AIRSS?
-
-- Get info of relaxation in VASP
-- Can WAVECAR be used?
-
-- Learn to use Spearmint
-- Know about GP and Stochastic Process
-- prior probability with EAM,...(EI/second) ?
-- Set lower precision to accelerate calculation(dynamic, because it may be useful only at first)(Time Complexity)
+- Useless
+  - Compiling Optimization for VASP(Gamma Point Only)
+  - Other OM combined with ML?(PSO?)
+  - Can Spearmint be separated more with VASP?
+  - integrated dft and opt(OK, Think too much)
+- To learn about
+  - Basin Hopping?
+  - AIRSS?
+- Don't Do Repeatly
+  - Get info of relaxation in VASP
+  - Can WAVECAR be used?
+- Don't Do Uselessly
+  - Learn to use Spearmint
+  - Know about GP and Stochastic Process
+  - prior probability with EAM,...(EI/second) ?
+  - Set lower precision to accelerate calculation(dynamic, because it may be useful only at first)(Time Complexity)
