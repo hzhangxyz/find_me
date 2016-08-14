@@ -1,57 +1,352 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html>
+
   <head>
-    <meta charset="UTF-8">
-    <title>Find me by zh19970205</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Find me : ">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Find me</title>
   </head>
+
   <body>
-    <section class="page-header">
-      <h1 class="project-name">Find me</h1>
-      <h2 class="project-tagline"></h2>
-      <a href="https://github.com/zh19970205/find_me" class="btn">View on GitHub</a>
-      <a href="https://github.com/zh19970205/find_me/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/zh19970205/find_me/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
 
-    <section class="main-content">
-      <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/zh19970205/find_me">View on GitHub</a>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
+          <h1 id="project_title">Find me</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/zh19970205/find_me/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/zh19970205/find_me/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="find_me" class="anchor" href="#find_me" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>FIND_ME</h1>
+
+<p>Find_me is optimization software for minimum energy structure <strong>under development</strong>.</p>
+
+<h2>
+<a id="content" class="anchor" href="#content" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Content</h2>
+
+<ul>
+  <li>
+    <a href="#our-goal">Our Goal</a>
+  </li>
+  <li>
+    <a href="#did-and-test">Did And Test</a>
+    <ul>
+      <li>
+        <a href="#a-wrap-for-vasp">A wrap for VASP</a>
+        <ul>
+          <li><a href="#a-test">A Test</a></li>
+          <li><a href="#instruction-for-poscar">instruction for POSCAR</a></li>
+          <li><a href="#attention">Attention</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#link-with-pso">link with PSO</a>
+      </li>
+      <li>
+        <a href="#link-with-random-search">link with random search</a>
+      </li>
+      <li>
+        <a href="#link-with-spearmint">link with Spearmint</a>
+        <ul>
+          <li><a href="#code">Code</a></li>
+          <li><a href="#test">Test</a></li>
+          <li><a href="#attention-1">Attention</a></li>
+          <li><a href="#some-test-output">Some Test Output</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="#todo">TODO</a>
+  </li>
+</ul>
+
+<h2>
+<a id="our-goal" class="anchor" href="#our-goal" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Our Goal</h2>
+
+<p>Input element and atoms number, </p>
+
+<p>via optimization method, and <a href="http://www.vasp.at/">VASP</a>, </p>
+
+<p>with calculation and optimization, </p>
+
+<p>it output the global minimum energy structure.</p>
+
+<h2>
+<a id="did-and-test" class="anchor" href="#did-and-test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Did And Test</h2>
 
 <h3>
-<a id="designer-templates" class="anchor" href="#designer-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a id="a-wrap-for-vasp" class="anchor" href="#a-wrap-for-vasp" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A wrap for VASP</h3>
 
-<p>We’ve crafted some handsome templates for you to use. Go ahead and click 'Continue to layouts' to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved.</p>
+<p>As you see in <a href="https://github.com/zh19970205/find_me/blob/master/test/H2O/POSCAR">POSCAR example</a>, 
+We define a format to get the true POSCAR for VASP, 
+with parser <a href="https://github.com/zh19970205/find_me/blob/master/shared.py">shared.py</a>. </p>
+
+<p>So we get a python function with structure parameters(positions of atoms) as arguments, 
+which call VASP and return energy.</p>
+
+<h4>
+<a id="a-test" class="anchor" href="#a-test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>A Test</h4>
+
+<p>Try:</p>
+
+<pre><code># git clone git@github.com:zh19970205/find_me.git
+...
+# cd find_me
+# ./get_data.sh H2O
+# python
+...
+&gt;&gt;&gt; from shared import get_energy
+&gt;&gt;&gt; get_energy([1,1.5,1.2],0,0)
+-7.96509304
+</code></pre>
+
+<p>get_data.sh is just a script copying POSCAR, POTCAR, and config.json from test/ to .</p>
+
+<p>POSCAR:</p>
+
+<pre><code>H2O
+1.00
+5       0       0
+0       5       0
+0       0       5
+H       O
+2       1
+cart
+0.00    0.00    0.00
+{(a)}   0.00    0.00
+{(b)}   {(c)}   0.00
+{{
+precision       2
+vars
+a       0.1     2
+b       -2      2
+c       0.1     2
+}}
+</code></pre>
+
+<h4>
+<a id="instruction-for-poscar" class="anchor" href="#instruction-for-poscar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>instruction for POSCAR</h4>
+
+<ul>
+<li>{...} means this should be replace before calling VASP, and inside it, you can write expression like {(r)*cos(theta)}, this is useful if you know about some symmetry of the structure</li>
+<li>variables should be in (...), for parsing easier</li>
+<li>inside {{...}}, there is some options, eg: precision means decimal places, 
+there are some options for random search: cores and times(the totally structure you will calculate is cores*times), 
+there are some options for pso: omega, phip, phig.</li>
+<li>after vars, there is variables and its domain</li>
+</ul>
+
+<p>As you see above, {(a)} will be replaced by 1 and {(b)} replaced by 1.5 and {(c)} replaced by 1.2, 
+and then python will call VASP and get <strong>the last TOTEN from OUTCAR</strong>.</p>
+
+<h4>
+<a id="attention" class="anchor" href="#attention" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Attention</h4>
+
+<p>find_me need VASP <strong>without</strong> mpi, or there will be conflict between mpi in VASP and it in find_me. 
+It is general knowledge that parallel program isn't as efficient as serial program. </p>
+
+<p><img src="http://cms.mpi.univie.ac.at/vasp/vasp/img49.png" alt="http://cms.mpi.univie.ac.at/vasp/vasp/img49.png"></p>
+
+<p>so we decide to give the parallel chance to optimization method, for its good parallel performance. </p>
+
+<p>So please compile a version without mpi for VASP and rename it as "vasp_without_mpi" and put it into $PATH</p>
 
 <h3>
-<a id="creating-pages-manually" class="anchor" href="#creating-pages-manually" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Creating pages manually</h3>
+<a id="link-with-pso" class="anchor" href="#link-with-pso" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>link with <a href="https://en.wikipedia.org/wiki/Particle_swarm_optimization">PSO</a>
+</h3>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+<p>the code is in <a href="https://github.com/zh19970205/find_me/blob/master/pso_find_me.py">pso_find_me.py</a>, Just for test and contrasts. You can ignore it. </p>
+
+<p>Try:</p>
+
+<pre><code># ./get_data.sh H2O
+</code></pre>
+
+<p>and set times 3 and cores 3 in POSCAR, and</p>
+
+<pre><code># mpirun -n 3 python pso_find_me.py
+[0.6396422576541099, -1.178237412205891, 0.7174609562987219]
+-6.90623521
+[0.6396422576541099, -1.178237412205891, 0.7174609562987219]
+-6.90623521
+[0.6396422576541099, -1.178237412205891, 0.7174609562987219]
+-6.90623521
+[1.0460718276254388, -0.3878937232244988, 0.718089995806529]
+-8.21903742
+</code></pre>
+
+<p>it will output parameters and energy of the observed minimum energy structure for each time.</p>
 
 <h3>
-<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+<a id="link-with-random-search" class="anchor" href="#link-with-random-search" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>link with random search</h3>
 
-<p>You can @mention a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor’s GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+<p>the code is in <a href="https://github.com/zh19970205/find_me/blob/master/surf_energy.py">surf_energy.py</a>, Just for test. You can ignore it. </p>
+
+<p>Try:</p>
+
+<pre><code># ./get_data.sh H2O
+</code></pre>
+
+<p>and set times 3 and cores 3 in POSCAR, and</p>
+
+<pre><code># mpirun -n 3 python surf_energy.py
+[0.5729802365387486, -0.5199666951689141, 1.3634050774944872]
+-6.27935381
+[0.39566346272656694, -1.682242752146247, 0.4674818456204878]
+-1.1084951
+[0.13055589978807816, -1.6821267522002494, 0.15910217557314077]
+65.58070443
+[0.27638633468013285, 1.1741958325033757, 1.359220673768153]
+10.30662607
+[0.8015793042340994, -1.3107675554786464, 1.2112746779577124]
+-7.12601719
+[1.1276158144716721, -0.18502400862421853, 1.4800347737040116]
+-7.2327105
+[1.3406260585320342, 1.426072101772327, 1.1315826861224447]
+-9.06377695
+[1.172328113256835, 1.4295430294010014, 1.915353771208993]
+-5.99833314
+[1.8795975781044238, 0.083169635727661, 1.8483449168154649]
+-4.2747424
+</code></pre>
+
+<p>it will output parameters and energy for each calculation.</p>
 
 <h3>
-<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a id="link-with-spearmint" class="anchor" href="#link-with-spearmint" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>link with <a href="https://github.com/HIPS/Spearmint">Spearmint</a>
+</h3>
 
-<p>Having trouble with Pages? Check out our <a href="https://help.github.com/pages">documentation</a> or <a href="https://github.com/contact">contact support</a> and we’ll help you sort it out.</p>
+<p>Spearmint is an implementation of <a href="https://en.wikipedia.org/wiki/Bayesian_optimization">Bayesian Optimization</a>. 
+When it work, it play a role as a manager to call function you supply.</p>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/zh19970205/find_me">Find me</a> is maintained by <a href="https://github.com/zh19970205">zh19970205</a>.</span>
+<h4>
+<a id="code" class="anchor" href="#code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code</h4>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+<p>Spearmint need a config.json(<a href="https://github.com/zh19970205/find_me/blob/master/test/H2O/config.json">example</a>), 
+and a python script with main function in it. </p>
+
+<p>So we just wrap a function for Spearmint over shared.py 
+in <a href="https://github.com/zh19970205/find_me/blob/master/spearmint_link.py">spearmint_link.py</a> </p>
+
+<h4>
+<a id="test" class="anchor" href="#test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Test</h4>
+
+<p>Try:</p>
+
+<pre><code># mkdir ~/var
+# mongod --fork --logpath ~/var/mongodb/log --dbpath ~/var/mongodb
+# python \&lt;/path/to/python/library/directory\&gt;/site-packages/spearmint/main.py .
+</code></pre>
+
+<p>then you will get many 00000***.out in output/</p>
+
+<pre><code># cat output/* | grep Got\ result | sed s/Got\ result\ //
+</code></pre>
+
+<p>then you get the output energy for each step</p>
+
+<h4>
+<a id="attention-1" class="anchor" href="#attention-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Attention</h4>
+
+<ul>
+<li>Spearmint require pymongo, numpy, scipy and mongdb.</li>
+</ul>
+
+<h4>
+<a id="some-test-output" class="anchor" href="#some-test-output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Some Test Output</h4>
+
+<h5>
+<a id="h2o3-param" class="anchor" href="#h2o3-param" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>H2O(3 param)</h5>
+
+<p>The true energy is -14.224 eV, find_me find -14.056 eV.</p>
+
+<p><img src="https://raw.githubusercontent.com/zh19970205/find_me/master/images/H2O.bmp" alt="H2O"></p>
+
+<h5>
+<a id="nh36-param" class="anchor" href="#nh36-param" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>NH3(6 param)</h5>
+
+<p>The true energy is -19.246,find_me find -19.259 eV.</p>
+
+<p><img src="https://raw.githubusercontent.com/zh19970205/find_me/master/images/NH3.bmp" alt="NH3"></p>
+
+<h5>
+<a id="ch49-param" class="anchor" href="#ch49-param" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CH4(9 param)</h5>
+
+<p>The true energy is -23.678 eV.</p>
+
+<p>Calculating...</p>
+
+<p>x axis is iteration step and y axis is energy(eV).</p>
+
+<p>As you see, it seems that there are two element during optimization: exploration and exploitation, 
+at first exploration has more weight and later exploitation has.
+This balance is maintained automatically in Bayesian Optimization.</p>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>Useless
+
+<ul>
+<li>Compiling Optimization for VASP(Gamma Point Only)</li>
+<li>Other OM combined with ML?(PSO?)</li>
+<li>Can Spearmint be separated more with VASP?</li>
+<li>integrated dft and opt(OK, Think too much)</li>
+</ul>
+</li>
+<li>To learn about
+
+<ul>
+<li>Basin Hopping?</li>
+<li>AIRSS?</li>
+</ul>
+</li>
+<li>Don't Do Repeatly
+
+<ul>
+<li>Get info of relaxation in VASP</li>
+<li>Can WAVECAR be used?</li>
+</ul>
+</li>
+<li>Don't Do Uselessly
+
+<ul>
+<li>Learn to use Spearmint</li>
+<li>Know about GP and Stochastic Process</li>
+<li>prior probability with EAM,...(EI/second) ?</li>
+<li>Set lower precision to accelerate calculation(dynamic, because it may be useful only at first)(Time Complexity)</li>
+</ul>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Find me maintained by <a href="https://github.com/zh19970205">zh19970205</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
+    </div>
 
-    </section>
+    
 
-  
   </body>
 </html>
