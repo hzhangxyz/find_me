@@ -252,3 +252,4 @@ This balance is maintained automatically in Bayesian Optimization.
   - Know about GP and Stochastic Process
   - prior probability with EAM,...(EI/second) ?
   - Set lower precision to accelerate calculation(dynamic, because it may be useful only at first)(Time Complexity)
+
