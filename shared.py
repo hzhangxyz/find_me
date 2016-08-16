@@ -1,5 +1,7 @@
-import shutil
+#!/usr/bin/env python
+
 import os
+import shutil
 
 def run_vasp(scale,
              mul,
@@ -34,7 +36,7 @@ def run_vasp(scale,
                 var[1],var[2],0)
         else:
             posi+="%%.%df %%.%df %%.%df T T T\n"%(p,p,p)%(
-                var[i*3-6],var[i*3-4],var[i*3-3])
+                var[i*3-6],var[i*3-5],var[i*3-4])
     poscar = "%s\n%s\n%s\n%s\n%s\nS\nC\n%s"%(
         title,
         "%%.%df"%precision%1,
@@ -97,24 +99,3 @@ def run_vasp(scale,
         pos=ans[-1][-1]
         ans.append(get_single_point(src,pos))
     return [(i[0],i[1]) for i in ans[:-1]]
-
-potpath = "/home/hzhang/vasp-opt/paw-pbe"
-scale = 2.
-mul = 5
-precision = 2
-title = "H2O"
-atoms = "O H"
-num = "1 2"
-var = [0.99,-0.25,0.96]
-tag = 0
-
-print run_vasp(scale,
-         mul,
-         precision,
-         title,
-         atoms,
-         num,
-         tag,
-         var,
-         potpath
-)
