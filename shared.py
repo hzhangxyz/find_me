@@ -1,17 +1,15 @@
 import shutil
 import os
 
-potpath = "/home/hzhang/vasp-opt/paw-pbe"
-scale = 2.
-mul = 5
-precision = 2
-title = "H2O"
-atoms = "O H"
-num = "1 2"
-var = [0.99,-0.25,0.96]
-tag = 0
-
-def run_vasp():
+def run_vasp(scale,
+             mul,
+             precision,
+             title,
+             atoms,
+             num,
+             tag,
+             var,
+             potpath):
     # Pretreatment
     nums=sum(map(int,num.split()))
     # Generate POSCAR
@@ -99,3 +97,24 @@ def run_vasp():
         pos=ans[-1][-1]
         ans.append(get_single_point(src,pos))
     return [(i[0],i[1]) for i in ans[:-1]]
+
+potpath = "/home/hzhang/vasp-opt/paw-pbe"
+scale = 2.
+mul = 5
+precision = 2
+title = "H2O"
+atoms = "O H"
+num = "1 2"
+var = [0.99,-0.25,0.96]
+tag = 0
+
+print run_vasp(scale,
+         mul,
+         precision,
+         title,
+         atoms,
+         num,
+         tag,
+         var,
+         potpath
+)
