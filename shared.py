@@ -1,6 +1,7 @@
 import shutil
 import os
 
+potpath = "/home/hzhang/vasp-opt/paw-pbe"
 scale = 2.
 mul = 5
 precision = 2
@@ -50,9 +51,18 @@ def run_vasp():
     os.makedirs(name)
     with open("%s/POSCAR"%name,"w") as posc:
         posc.write(poscar)
-    shutil.copy("POTCAR","%s/POTCAR"%name)
+    with open("%s/KPOINTS"%name,"w") as kpoi:
+        kpoi.write("""Gamma-point only
+        1
+        rec
+        0 0 0 1
+        """)
+    with open("%s/POTCAR"%name,"w") as potc:
+        for i in atoms.split():
+            with open("%s/%s/POTCAR"%(potpath,i),"r") as to_read:
+                to_copy = to_read.read()
+            potc.write(to_copy)
     shutil.copy("INCAR","%s/INCAR"%name)
-    shutil.copy("KPOINTS","%s/KPOINTS"%name)
     os.system("cd %s;vasp_without_mpi 1>output"%name)
     with open("%s/OUTCAR"%name,"r") as outc:
         src=outc.read()
