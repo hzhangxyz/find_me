@@ -1,24 +1,26 @@
 import shutil
 import os
 
-scale = 1
+scale = 2.
+mul = 5
 precision = 2
-nums = 3
 title = "H2O"
-atoms = "H O"
-num = "2 1"
-var = [1,-0.3,0.9]
+atoms = "O H"
+num = "1 2"
+var = [0.99,-0.25,0.96]
 tag = 0
 
 def run_vasp():
+    # Pretreatment
+    nums=sum(map(int,num.split()))
     # Generate POSCAR
     p=precision
     cys = "%%.%df %%.%df %%.%df\n%%.%df %%.%df %%.%df\n%%.%df %%.%df %%.%df"%(
         p,p,p,p,p,p,p,p,p
     )%(
-        scale*5,0,0,
-        0,scale*5,0,
-        0,0,scale*5
+        scale*mul,0,0,
+        0,scale*mul,0,
+        0,0,scale*mul
     )
     posi = ""
     for i in range(nums):
@@ -76,7 +78,7 @@ def run_vasp():
                 position.append(pre_position[i*6+1])
                 position.append(pre_position[i+8+2])
         position=map(float,position)
-        position=map(lambda x:x if x<scale/2. else x-scale,position)
+        position=map(lambda x:x if x<scale*mul/2 else x-scale*mul,position)
         pre_en=src.find("=",ender)
         en=float(src[pre_en+1:src.find("eV",pre_en)].split()[0])
         return position,en,pre_en
