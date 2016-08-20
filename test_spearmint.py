@@ -1,5 +1,6 @@
 def load_jobs(db, experiment_name):
     jobs = db.load(experiment_name, 'jobs')
+    print jobs
     if jobs is None:
         jobs = []
     if isinstance(jobs, dict):
