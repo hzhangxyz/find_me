@@ -98,4 +98,4 @@ def run_vasp(scale,
     while ans[-1]!=None:
         pos=ans[-1][-1]
         ans.append(get_single_point(src,pos))
-    return [(i[0],i[1]) for i in ans[:-1]]
+    return [[i[0],i[1]] for i in ans[:-1]]
