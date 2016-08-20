@@ -1,0 +1,3 @@
+[submodule "find_me_spearmint"]
+	path = find_me_spearmint
+	url = git@github.com:zh19970205/find_me_spearmint.git
