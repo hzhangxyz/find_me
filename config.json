@@ -4,7 +4,7 @@
   "experiment-name" : "test_relaxation",
   "likelihood"      : "NOISELESS",
   "polling-time"    : 1,
-  "max-concurrent"  : 3,
+  "max-concurrent"  : 20,
   "variables" : {
     "x1" : {
       "type" : "FLOAT",

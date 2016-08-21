@@ -1,8 +1,13 @@
 #PBS -N test_relaxation
-#PBS -l nodes=cu02:ppn=10
+#PBS -l nodes=cu02:ppn=20
 #PBS -q ib
 
 cd $PBS_O_WORKDIR
+
+killall mongod
+rm mongodb -rf
+mkdir mongodb
+mongod --fork --logpath ./mongodb/log --dbpath ./mongodb
 
 source activate spearmint
 python ./spearmint/main.py .
