@@ -46,4 +46,4 @@ def main(s_id,pre_var):
          var,
          potpath
     )
-    return [[dict(map(lambda x:("x%d"%x,i[0][x]), range(1,10))),i[1]] for i in ans]
+    return [[dict(map(lambda x:("x%d"%x,i[0][x-1]), range(1,10))),i[1]] for i in ans]
