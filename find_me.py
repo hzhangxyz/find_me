@@ -67,9 +67,17 @@ def main():
         "max"  : opt["scale"]
     }
 
-    for i in range(1,1+sum(map(int,opt["num"].split()))):
+    atom_num = sum(map(int,opt["num"].split()))
+    if atom_num <= 1:
+        var_num = 0
+    elif atom_num == 2:
+        var_num = 1
+    else:
+        var_num = 3*atom_num-6
+    for i in range(1,var_num):
         spearmint_config["variables"]["x%d"%i] = var_temp
 
+    print spearmint_config
     options, expt_dir = get_options(spearmint_config)
 
     resources = parse_resources_from_config(options)
