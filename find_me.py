@@ -1,36 +1,5 @@
 #!/usr/bin/env python
 
-"""
-read find_me.json
-output config.json for spearmint
-"""
-
-try: import simplejson as json
-except: import json
-
-with open("find_me.json","r") as f:
-    opt = json.load(f)
-
-spearmint_config = {
-    "language"        : "PYTHON",
-    "main-file"       : opt["python_file"],
-    "experiment-name" : "test_relaxation",
-    "likelihood"      : "NOISELESS",
-    "polling-time"    : 1,
-    "max-concurrent"  : opt["maxcur"],
-    "variables"        : {}
-}
-
-var_temp = {
-          "type" : "FLOAT",
-          "size" : 1,
-          "min"  : -opt["scale"],
-          "max"  : opt["scale"]
-}
-
-for i in range(1,1+sum(map(int,opt["num"].split()))):
-    spearmint_config["variables"]["x%d"%i] = var_temp
-
 import sys
 import importlib
 import time
@@ -51,20 +20,12 @@ from spearmint.resources.resource import print_resources_status
 
 from spearmint.utils.parsing import parse_db_address
 
-def get_options():
-    config = "spearmint.json"
+def get_options(options):
     expt_dir  = os.path.realpath(".")
     if not os.path.isdir(expt_dir):
         raise Exception("Cannot find directory %s" % expt_dir)
-    expt_file = os.path.join(expt_dir, config)
 
-    try:
-        with open(expt_file, 'r') as f:
-            options = json.load(f, object_pairs_hook=OrderedDict)
-    except:
-        raise Exception("config.json did not load properly. Perhaps a spurious comma?")
-    options["config"]  = config
-
+    options = OrderedDict(options)
 
     # Set sensible defaults for options
     options['chooser']  = options.get('chooser', 'default_chooser')
@@ -86,8 +47,30 @@ def get_options():
     return options, expt_dir
 
 def main():
-    options, expt_dir = get_options()
-    print options, expt_dir
+    with open("find_me.json","r") as f:
+        opt = json.load(f)
+
+    spearmint_config = {
+        "language"        : "PYTHON",
+        "main-file"       : opt["python_file"],
+        "experiment-name" : opt["title"],
+        "likelihood"      : "NOISELESS",
+        "polling-time"    : 1,
+        "max-concurrent"  : opt["maxcur"],
+        "variables"       : {}
+    }
+
+    var_temp = {
+        "type" : "FLOAT",
+        "size" : 1,
+        "min"  : -opt["scale"],
+        "max"  : opt["scale"]
+    }
+
+    for i in range(1,1+sum(map(int,opt["num"].split()))):
+        spearmint_config["variables"]["x%d"%i] = var_temp
+
+    options, expt_dir = get_options(spearmint_config)
 
     resources = parse_resources_from_config(options)
 
