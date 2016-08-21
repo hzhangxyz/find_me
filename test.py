@@ -9,10 +9,12 @@ precision = 2
 title = "CH4"
 atoms = "C H"
 num = "1 4"
-var = [1.09,-0.36,1.03,-0.36,-0.34,0.97,-0.36,-0.34,-0.97]
+#var = [1.09,-0.36,1.03,-0.36,-0.34,0.97,-0.36,-0.34,-0.97]
 tag = 0
 
-print run_vasp(scale,
+def main(s_id,pre_var):
+    var = map(lambda x:pre_var[x],"x1 x2 x3 x4 x5 x6 x7 x8 x9".split())
+    ans = run_vasp(scale,
          mul,
          precision,
          title,
@@ -21,4 +23,5 @@ print run_vasp(scale,
          tag,
          var,
          potpath
-)
+    )
+    return [[dict(map(lambda x:("x%d"%x,i[0][x]), range(1,10))),i[1]] for i in ans]

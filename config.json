@@ -1,21 +1,63 @@
 {
-    "language"        : "PYTHON",
-    "main-file"       : "branin.py",
-    "experiment-name" : "simple-braninhoo-example",
-    "likelihood"      : "NOISELESS",
-    "variables" : {
-        "x" : {
-            "type" : "FLOAT",
-            "size" : 1,
-            "min"  : -5,
-            "max"  : 10
-        },
-        "y" : {
-            "type" : "FLOAT",
-            "size" : 1,
-            "min"  : 0,
-            "max"  : 15
-        }
+  "language"        : "PYTHON",
+  "main-file"       : "test.py",
+  "experiment-name" : "test_relaxation",
+  "likelihood"      : "NOISELESS",
+  "variables" : {
+    "x1" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x2" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x3" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x4" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x5" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x6" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x7" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x8" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
+    },
+    "x9" : {
+      "type" : "FLOAT",
+      "size" : 1,
+      "min"  : -2,
+      "max"  : 2
     }
+  }
 }
 
