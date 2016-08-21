@@ -1,5 +1,9 @@
 #!/usr/bin/env python
 
+"""
+read find_me.conf link vasp and spearmint
+"""
+
 from run_vasp import run_vasp
 
 potpath = "/home/hzhang/vasp-opt/paw-pbe"
