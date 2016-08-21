@@ -14,6 +14,27 @@ tag = 0
 
 def main(s_id,pre_var):
     var = map(lambda x:pre_var[x],"x1 x2 x3 x4 x5 x6 x7 x8 x9".split())
+    pos = []
+    for i in range(len(var)/3+2):
+        if i == 0:
+            pos.append((0,0,0))
+        elif i == 1:
+            pos.append((0,0,var[0]))
+        elif i == 2:
+            pos.append((0,var[1],var[2]))
+        else:
+            pos.append((var[i*3-6],var[i*3-5],var[i*3-4]))
+    def dis(p1,p2):
+        s=(p1[0]-p2[0])**2+\
+        (p1[1]-p2[1])**2+\
+        (p1[2]-p2[2])**2
+        import math
+        return math.sqrt(s)
+    for i in range(len(pos)):
+        for j in range(len(pos)):
+            if i != j:
+                if dis(pos[i],pos[j])<0.2:
+                    return 100
     ans = run_vasp(scale,
          mul,
          precision,
