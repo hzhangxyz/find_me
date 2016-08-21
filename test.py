@@ -50,5 +50,5 @@ def main(s_id,pre_var):
     ans = []
     while length != 0:
         ans.append(pre_ans[-length])
-        length =  length/2
+        length = length/2
     return [[dict(map(lambda x:("x%d"%x,i[0][x-1]), range(1,10))),i[1]] for i in ans]
