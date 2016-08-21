@@ -6,4 +6,5 @@
   "title"       : "CH4",
   "atoms"       : "C H",
   "num"         : "1 4",
+  "maxcur"      : 20
 }

@@ -2,8 +2,8 @@
 
 import os
 import shutil
-
-import json
+try: import simplejson as json
+except: import json
 
 with open("find_me.json","r") as f:
     opt = json.load(f)
@@ -105,11 +105,9 @@ def run_vasp(tag, var):
         ans.append(get_single_point(src,pos))
     return [[i[0],i[1]] for i in ans[:-1]]
 
-
-
 def main(s_id,pre_var):
     tag=s_id
-    var = map(lambda x:pre_var[x],"x1 x2 x3 x4 x5 x6 x7 x8 x9".split())
+    var = map(lambda x:pre_var["x%d"%x],range(1,len(pre_var)+1))
     pos = []
     for i in range(len(var)/3+2):
         if i == 0:
@@ -137,4 +135,4 @@ def main(s_id,pre_var):
     while length != 0:
         ans.append(pre_ans[-length])
         length = length/2
-    return [[dict(map(lambda x:("x%d"%x,i[0][x-1]), range(1,10))),i[1]] for i in ans]
+    return [[dict(map(lambda x:("x%d"%x,i[0][x-1]), range(1,len(pre_var)+1))),i[1]] for i in ans]
