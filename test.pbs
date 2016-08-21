@@ -1,0 +1,14 @@
+#PBS -N test_relaxation
+#PBS -l nodes=cu2:ppn=10
+#PBS -q ib
+
+nprocs=`wc -l < $PBS_NODEFILE`
+
+cd $PBS_O_WORKDIR
+
+killall mongod
+rm ./mongodb -rf
+mongod --fork --logpath ./mongodb/log --dbpath ./mongodb
+
+source activate spearmint
+python ./spearmint/main.py .
