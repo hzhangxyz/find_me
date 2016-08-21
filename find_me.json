@@ -1,11 +1,11 @@
 {
   "potpath"     : "/home/hzhang/vasp-opt/paw-pbe",
-  "scale"       : 2.0,
+  "scale"       : 3.0,
   "mul"         : 5.0,
   "precision"   : 2,
-  "title"       : "CH4",
-  "atoms"       : "C H",
-  "num"         : "1 4",
+  "title"       : "B2H6",
+  "atoms"       : "B H",
+  "num"         : "2 6",
   "maxcur"      : 20,
   "python_file" : "run_vasp.py"
 }
