@@ -1,5 +1,5 @@
 #PBS -N test_relaxation
-#PBS -l nodes=cu02:ppn=20
+#PBS -l nodes=cu03:ppn=20
 #PBS -q ib
 
 cd $PBS_O_WORKDIR

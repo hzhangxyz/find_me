@@ -36,7 +36,7 @@ def main(s_id,pre_var):
             if i != j:
                 if dis(pos[i],pos[j])<0.2:
                     return 100
-    ans = run_vasp(scale,
+    pre_ans = run_vasp(scale,
          mul,
          precision,
          title,
@@ -46,4 +46,9 @@ def main(s_id,pre_var):
          var,
          potpath
     )
+    length = len(pre_ans)
+    ans = []
+    while length != 0:
+        ans.append(pre_ans[-length])
+        length =  length/2
     return [[dict(map(lambda x:("x%d"%x,i[0][x-1]), range(1,10))),i[1]] for i in ans]
