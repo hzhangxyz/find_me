@@ -14,7 +14,10 @@ for i in range(int(opt.num)):
     if os.path.exists("try_%d"%i):
         if opt.readable:
             print "%d\t:"%i
-        ans = sp.check_output(string%i,shell=True).split("\n")
+        try:
+            ans = sp.check_output(string%i,shell=True).split("\n")
+        except:
+            continue
         if not opt.readable:
             ans = ans[:-1]
         if opt.check:
