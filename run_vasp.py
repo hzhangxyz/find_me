@@ -3,15 +3,20 @@
 import os
 import shutil
 
-def run_vasp(scale,
-             mul,
-             precision,
-             title,
-             atoms,
-             num,
-             tag,
-             var,
-             potpath):
+import json
+
+with open("find_me.json","r") as f:
+    opt = json.load(f)
+
+potpath = opt["potpath"]
+scale = opt["scale"]
+mul = opt["mul"]
+precision = opt["precision"]
+title = opt["title"]
+atoms = opt["atoms"]
+num = opt["num"]
+
+def run_vasp(tag, var):
     # Pretreatment
     nums=sum(map(int,num.split()))
     # Generate POSCAR
@@ -99,3 +104,37 @@ def run_vasp(scale,
         pos=ans[-1][-1]
         ans.append(get_single_point(src,pos))
     return [[i[0],i[1]] for i in ans[:-1]]
+
+
+
+def main(s_id,pre_var):
+    tag=s_id
+    var = map(lambda x:pre_var[x],"x1 x2 x3 x4 x5 x6 x7 x8 x9".split())
+    pos = []
+    for i in range(len(var)/3+2):
+        if i == 0:
+            pos.append((0,0,0))
+        elif i == 1:
+            pos.append((0,0,var[0]))
+        elif i == 2:
+            pos.append((0,var[1],var[2]))
+        else:
+            pos.append((var[i*3-6],var[i*3-5],var[i*3-4]))
+    def dis(p1,p2):
+        s=(p1[0]-p2[0])**2+\
+        (p1[1]-p2[1])**2+\
+        (p1[2]-p2[2])**2
+        import math
+        return math.sqrt(s)
+    for i in range(len(pos)):
+        for j in range(len(pos)):
+            if i != j:
+                if dis(pos[i],pos[j])<0.2:
+                    return 100
+    pre_ans = run_vasp(tag, var)
+    length = len(pre_ans)
+    ans = []
+    while length != 0:
+        ans.append(pre_ans[-length])
+        length = length/2
+    return [[dict(map(lambda x:("x%d"%x,i[0][x-1]), range(1,10))),i[1]] for i in ans]
