@@ -47,6 +47,7 @@ def get_options(options):
     return options, expt_dir
 
 def main():
+    # Load up the config
     with open("find_me.json","r") as f:
         opt = json.load(f)
 
