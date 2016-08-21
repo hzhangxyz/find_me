@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import sys
-import optparse
 import importlib
 import time
 import os
@@ -22,26 +21,18 @@ from spearmint.resources.resource import print_resources_status
 from spearmint.utils.parsing import parse_db_address
 
 def get_options():
-    parser = optparse.OptionParser(usage="usage: %prog [options] directory")
-
-    parser.add_option("--config", dest="config_file",
-                      help="Configuration file name.",
-                      type="string", default="config.json")
-
-    (commandline_kwargs, args) = parser.parse_args()
-
-    # Read in the config file
-    expt_dir  = os.path.realpath(os.path.expanduser(args[0]))
+    config = "spearmint.json"
+    expt_dir  = os.path.realpath(".")
     if not os.path.isdir(expt_dir):
         raise Exception("Cannot find directory %s" % expt_dir)
-    expt_file = os.path.join(expt_dir, commandline_kwargs.config_file)
+    expt_file = os.path.join(expt_dir, config)
 
     try:
         with open(expt_file, 'r') as f:
             options = json.load(f, object_pairs_hook=OrderedDict)
     except:
         raise Exception("config.json did not load properly. Perhaps a spurious comma?")
-    options["config"]  = commandline_kwargs.config_file
+    options["config"]  = config
 
 
     # Set sensible defaults for options
@@ -65,6 +56,7 @@ def get_options():
 
 def main():
     options, expt_dir = get_options()
+    print options, expt_dir
 
     resources = parse_resources_from_config(options)
 
