@@ -10,4 +10,4 @@ mkdir mongodb
 mongod --fork --logpath ./mongodb/log --dbpath ./mongodb
 
 source activate spearmint
-python ./spearmint/main.py .
+python main.py .
