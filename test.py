@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from shared import run_vasp
+from run_vasp import run_vasp
 
 potpath = "/home/hzhang/vasp-opt/paw-pbe"
 scale = 2.
