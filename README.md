@@ -242,7 +242,6 @@ This balance is maintained automatically in Bayesian Optimization.
   - Can Spearmint be separated more with VASP?
   - integrated dft and opt(OK, Think too much)
 - To learn about
-  - Basin Hopping?
   - AIRSS?
 - Don't Do Repeatly
   - Get info of relaxation in VASP
