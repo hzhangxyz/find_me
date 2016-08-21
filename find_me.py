@@ -74,7 +74,7 @@ def main():
         var_num = 1
     else:
         var_num = 3*atom_num-6
-    for i in range(1,var_num):
+    for i in range(1,var_num+1):
         spearmint_config["variables"]["x%d"%i] = var_temp
 
     print spearmint_config
