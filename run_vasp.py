@@ -6,6 +6,7 @@ try: import simplejson as json
 except: import json
 
 def main(s_id,pre_var):
+    # Pretreatment
     with open("find_me.json","r") as f:
         opt = json.load(f)
 
@@ -17,8 +18,7 @@ def main(s_id,pre_var):
     atoms = opt["atoms"]
     num = opt["num"]
     vasp = opt["vasp"]
-
-    tag=s_id
+    tag = s_id
     var = map(lambda x:pre_var["x%d"%x],range(1,len(pre_var)+1))
     pos = []
     for i in range(len(var)/3+2):
@@ -41,8 +41,6 @@ def main(s_id,pre_var):
             if i != j:
                 if dis(pos[i],pos[j])<0.2:
                     return 100
-
-    # Pretreatment
     nums=sum(map(int,num.split()))
     # Generate POSCAR
     p=precision
