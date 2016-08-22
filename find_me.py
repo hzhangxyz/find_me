@@ -58,7 +58,8 @@ def main():
         "likelihood"      : "NOISELESS",
         "polling-time"    : 1,
         "max-concurrent"  : opt["maxcur"],
-        "variables"       : {}
+        "variables"       : {},
+        "chooser-args"    : {"parallel-opt" : True}
     }
 
     var_temp = {
