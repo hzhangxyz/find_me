@@ -6,6 +6,7 @@ try: import simplejson as json
 except: import json
 
 def main(s_id,pre_var):
+    # Pretreatment
     with open("find_me.json","r") as f:
         opt = json.load(f)
 
@@ -16,8 +17,8 @@ def main(s_id,pre_var):
     title = opt["title"]
     atoms = opt["atoms"]
     num = opt["num"]
-
-    tag=s_id
+    vasp = opt["vasp"]
+    tag = s_id
     var = map(lambda x:pre_var["x%d"%x],range(1,len(pre_var)+1))
     pos = []
     for i in range(len(var)/3+2):
@@ -40,8 +41,6 @@ def main(s_id,pre_var):
             if i != j:
                 if dis(pos[i],pos[j])<0.2:
                     return 100
-
-    # Pretreatment
     nums=sum(map(int,num.split()))
     # Generate POSCAR
     p=precision
@@ -92,7 +91,7 @@ def main(s_id,pre_var):
                 to_copy = to_read.read()
             potc.write(to_copy)
     shutil.copy("INCAR","%s/INCAR"%name)
-    os.system("cd %s;vasp_without_mpi 1>output"%name)
+    os.system("cd %s;%s 1>output"%(name,vasp))
     with open("%s/OUTCAR"%name,"r") as outc:
         src=outc.read()
     # Define Get Single Energy
