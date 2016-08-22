@@ -14,15 +14,15 @@ parser.add_option("-n","--num",dest="num",help="number of file to gather",defaul
 string="cat ./try_%d/OUTCAR | grep 'free  energy'"
 for i in range(int(opt.num)):
     if os.path.exists("try_%d"%i):
+        try:
+            ans = sp.check_output(string%i,shell=True).split("\n")
+        except:
+            continue
         if opt.readable:
             if opt.check:
                 sys.stdout.write("%d\t:"%i)
             else:
                 print "%d\t:"%i
-        try:
-            ans = sp.check_output(string%i,shell=True).split("\n")
-        except:
-            continue
         if not opt.readable:
             ans = ans[:-1]
         if opt.check:
