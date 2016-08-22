@@ -16,6 +16,7 @@ def main(s_id,pre_var):
     title = opt["title"]
     atoms = opt["atoms"]
     num = opt["num"]
+    vasp = opt["vasp"]
 
     tag=s_id
     var = map(lambda x:pre_var["x%d"%x],range(1,len(pre_var)+1))
@@ -92,7 +93,7 @@ def main(s_id,pre_var):
                 to_copy = to_read.read()
             potc.write(to_copy)
     shutil.copy("INCAR","%s/INCAR"%name)
-    os.system("cd %s;vasp_without_mpi 1>output"%name)
+    os.system("cd %s;%s 1>output"%(name,vasp))
     with open("%s/OUTCAR"%name,"r") as outc:
         src=outc.read()
     # Define Get Single Energy

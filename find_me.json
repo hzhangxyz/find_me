@@ -7,5 +7,6 @@
   "atoms"       : "B H",
   "num"         : "2 6",
   "maxcur"      : 20,
-  "python_file" : "run_vasp.py"
+  "python_file" : "run_vasp.py",
+  "vasp"        : "vasp_without_mpi"
 }
