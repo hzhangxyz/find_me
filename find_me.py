@@ -59,7 +59,7 @@ def main():
         "polling-time"    : 1,
         "max-concurrent"  : opt["maxcur"],
         "variables"       : {},
-        "chooser-args"    : {"parallel-opt" : True}
+        #"chooser-args"    : {"parallel-opt" : True}
     }
 
     var_temp = {
