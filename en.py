@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import subprocess as sp
 import os
+import sys
 from optparse import OptionParser
+
 parser = OptionParser()
 parser.add_option("-r","--readable",dest="readable",action="store_true",help="print readable message")
 parser.add_option("-c","--check",dest="check",action="store_true",help="only check last energy for each file")
@@ -12,12 +14,15 @@ parser.add_option("-n","--num",dest="num",help="number of file to gather",defaul
 string="cat ./try_%d/OUTCAR | grep 'free  energy'"
 for i in range(int(opt.num)):
     if os.path.exists("try_%d"%i):
-        if opt.readable:
-            print "%d\t:"%i
         try:
             ans = sp.check_output(string%i,shell=True).split("\n")
         except:
             continue
+        if opt.readable:
+            if opt.check:
+                sys.stdout.write("%d\t:"%i)
+            else:
+                print "%d\t:"%i
         if not opt.readable:
             ans = ans[:-1]
         if opt.check:
