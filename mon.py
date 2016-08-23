@@ -40,7 +40,7 @@ to_print += "Mongodb Structure Number is \t:\t%d\n"%int(
 to_print += "Totaled Structure Number is \t:\t%d\n"%len(data)
 to_print += "Current Processes Number is \t:\t%d\n"%int(
     sp.check_output("ssh cu%02d ps -A"
-                    "|grep vasp_with"
+                    "|grep vasp"
                     "|wc -l"%node,
                     shell=True))
 import matplotlib as mpl
