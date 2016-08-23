@@ -6,7 +6,7 @@
   "title"       : "Ag13",
   "atoms"       : "Ag",
   "num"         : "13",
-  "maxcur"      : 15,
+  "maxcur"      : 20,
   "python_file" : "run_vasp.py",
-  "vasp"        : "vasp_without_mpi"
+  "vasp"        : "vasp.5.4.1g"
 }
