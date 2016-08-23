@@ -1,8 +1,15 @@
+#!/usr/bin/env python
 import subprocess as sp
 import sys
-name = sys.argv[1]
-node = int(sys.argv[2])
-www = sys.argv[3]
+from optparse import OptionParser
+parser = OptionParser()
+parser.add_option("-N","--name",dest="name",help="name of the material")
+parser.add_option("-n","--node",dest="node",help="nodes that is running its mongodb")
+parser.add_option("-w","--www",dest="www",help="web directory",default="/home/hzhang/cod")
+(opt,args)=parser.parse_args()
+name = opt.name
+node = int(opt.node)
+www = opt.www
 direc = "."
 to_print = r"""<body style='padding:5%'>
 <h1>Monitor</h1>
