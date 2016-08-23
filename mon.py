@@ -52,7 +52,7 @@ axes.patch.set_facecolor('#000000')
 axes.set_ylim([-40,5])
 axes.set_xlim([-10,len(data)+10])
 fig.set_size_inches(10, 7)
-fig.savefig('/home/hzhang/cod/%s-mon.png'%name)
-to_print += '</pre><img src=%s-mon.png width=100%%></img>\n'%name
-with open("%s/%s-%02d-mon.html"%(www,node,name),"w") as f:
+fig.savefig('/home/hzhang/cod/%s-%02d-mon.png'%(name,node))
+to_print += '</pre><img src=%s-%02d-mon.png width=100%%></img>\n'%(name,node)
+with open("%s/%s-%02d-mon.html"%(www,name,node),"w") as f:
     f.write(to_print)
