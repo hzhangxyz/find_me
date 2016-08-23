@@ -3,10 +3,10 @@
   "scale"       : 3.0,
   "mul"         : 5.0,
   "precision"   : 2,
-  "title"       : "B2H6",
-  "atoms"       : "B H",
-  "num"         : "2 6",
-  "maxcur"      : 20,
+  "title"       : "Ag13",
+  "atoms"       : "Ag",
+  "num"         : "13",
+  "maxcur"      : 15,
   "python_file" : "run_vasp.py",
   "vasp"        : "vasp_without_mpi"
 }
