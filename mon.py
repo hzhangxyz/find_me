@@ -10,7 +10,6 @@ parser.add_option("-w","--www",dest="www",help="web directory",default="/home/hz
 name = opt.name
 node = int(opt.node)
 www = opt.www
-direc = "."
 to_print = r"""<body style='padding:5%'>
 <h1>Monitor</h1>
 <pre style='font-size:150%'>
@@ -26,11 +25,11 @@ document.write(r.getResponseHeader('Last-Modified'))
 document.write('\n')
 </script>
 """
-d = sp.check_output(r"cd %s;./en.py -cn 10000"%direc,
+d = sp.check_output(r"./en.py -cn 10000",
                      shell=True)
 data=map(float,d.split())
 to_print += "Sampled Structure Number is \t:\t%d\n"%len(data)
-d = sp.check_output(r"cd %s;./en.py -n 10000"%direc,
+d = sp.check_output(r"./en.py -n 10000",
                      shell=True)
 data=map(float,d.split())
 to_print += "Mongodb Structure Number is \t:\t%d\n"%int(
@@ -40,7 +39,7 @@ to_print += "Mongodb Structure Number is \t:\t%d\n"%int(
 to_print += "Totaled Structure Number is \t:\t%d\n"%len(data)
 to_print += "Current Processes Number is \t:\t%d\n"%int(
     sp.check_output("ssh cu%02d ps -A"
-                    "|grep vasp_with"
+                    "|grep vasp"
                     "|wc -l"%node,
                     shell=True))
 import matplotlib as mpl
@@ -53,6 +52,11 @@ axes.set_ylim([-40,5])
 axes.set_xlim([-10,len(data)+10])
 fig.set_size_inches(10, 7)
 fig.savefig('/home/hzhang/cod/%s-%02d-mon.png'%(name,node))
-to_print += '</pre><img src=%s-%02d-mon.png width=100%%></img>\n'%(name,node)
+to_print += '</pre><img src=%s-%02d-mon.png width=100%%></img>\n<pre>'%(name,node)
+data=map(float,sp.check_output(
+    r"./en.py -n 1000 -rc",
+    shell=True).replace(":","").split())
+to_print += "Minimum Energy is\t:\t%d\n\nCONTCAR\t:\n\n"%min(data)
+to_print += sp.check_output(r"cd try_%d;cat CONTCAR"%int(data[data.index(min(data))-1]),shell=True)
 with open("%s/%s-%02d-mon.html"%(www,name,node),"w") as f:
     f.write(to_print)
