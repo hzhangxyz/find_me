@@ -53,10 +53,13 @@ axes.set_xlim([-10,len(data)+10])
 fig.set_size_inches(10, 7)
 fig.savefig('/home/hzhang/cod/%s-%02d-mon.png'%(name,node))
 to_print += '</pre><img src=%s-%02d-mon.png width=100%%></img>\n<pre>'%(name,node)
-data=map(float,sp.check_output(
-    r"./en.py -n 1000 -rc",
-    shell=True).replace(":","").split())
-to_print += "Minimum Energy is\t:\t%f\n\nCONTCAR\t:\n\n"%min(data)
-to_print += sp.check_output(r"cd try_%d;cat CONTCAR"%int(data[data.index(min(data))-1]),shell=True)
+try:
+    data=map(float,sp.check_output(
+        r"./en.py -n 1000 -rc",
+        shell=True).replace(":","").split())
+    to_print += "Minimum Energy is\t:\t%f\n\nCONTCAR\t:\n\n"%min(data)
+    to_print += sp.check_output(r"cd try_%d;cat CONTCAR"%int(data[data.index(min(data))-1]),shell=True)
+except:
+    pass
 with open("%s/%s-%02d-mon.html"%(www,name,node),"w") as f:
     f.write(to_print)
