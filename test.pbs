@@ -1,13 +1,13 @@
 #PBS -N test_relax
 #PBS -l nodes=1:ppn=20
-#PBS -q prio
+#PBS -q ib
 
 cd $PBS_O_WORKDIR
 
-#killall mongod
-#rm mongodb -rf
-#mkdir mongodb
-#mongod --fork --logpath ./mongodb/log --dbpath ./mongodb
+killall mongod
+rm mongodb -rf
+mkdir mongodb
+mongod --fork --logpath ./mongodb/log --dbpath ./mongodb
 
 source activate spearmint
 python find_me.py
