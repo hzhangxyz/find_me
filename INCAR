@@ -1,30 +1,7 @@
-SYSTEM = Find_Me
-NWRITE = 3
-ISTART = 60
-ISPIN  = 1
-INIWAV = 1
-
-ENCUT  = 250
-ENAUG  = 1000
-PREC   = Normal
-NELM   = 100
-NELMIN = 2
-EDIFF  = 1E-4
-EDIFFG = 1E-3
-
-NSW    = 1000
-IBRION = 2
-ISIF   = 0
-NBLOCK = 1
-KBLOCK = 5
-POTIM  = 0.5
-
-ISMEAR = 0
-SIGMA  = 0.2
-ALGO   = Normal
-LREAL  = A
-
-LWAVE  = F
-LCHARG = F
-LVTOT  = F
-LVHAR  = F
+ PREC = Normal    ! standard precision 
+ ENMAX = 400      ! cutoff should be set manually
+ ISMEAR = 0 ; SIGMA = 0.1
+ IBRION = 2       ! 1;use DIIS algorithm to converge
+ !NFREE = 2       ! 2 independent degrees of freedom
+ NSW = 1000       ! 10;10 ionic steps
+ EDIFFG = -0.02   ! forces smaller 0.02 A/eV

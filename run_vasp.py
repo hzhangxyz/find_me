@@ -128,9 +128,10 @@ def main(s_id,pre_var):
         ans.append(get_single_point(src,pos))
     pre_ans = [[i[0],i[1]] for i in ans[:-1]]
 
-    length = len(pre_ans)
+    length = len(pre_ans)-1
     to_return = []
     while length != 0:
-        to_return.append(pre_ans[-length])
+        to_return.append(pre_ans[length])
         length = length/2
+    to_return.append(pre_ans[0])
     return [[dict(map(lambda x:("x%d"%x,i[0][x-1]), range(1,len(pre_var)+1))),i[1]] for i in to_return]
