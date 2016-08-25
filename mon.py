@@ -68,6 +68,7 @@ var camera = null;
 var renderer = null;
 var light = null;
 
+var proto_mesh = null;
 var mesh = null;
 var meshes = [];
 var id = null;
@@ -83,7 +84,6 @@ light = new THREE.PointLight( 0xFFFFFF );
 light.position.set(10,2,2);
 scene.add( light );
 
-//camera = new THREE.OrthographicCamera(-2, 2, 2, -2);
 camera = new THREE.PerspectiveCamera()
 camera.position.set(1, 0.5, 0);
 camera.lookAt(new THREE.Vector3(0, 0, 0));
@@ -93,16 +93,16 @@ proto_mesh = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 16), new THREE.Me
 color: 0x00ff00
 }));
 
+var data = [];
+
 //HERE
 
-/*
-{[(
-m%d = proto_mesh.clone()
-m%d.position.set(%f,%f,%f);
-scene.add(m%d);
-meshes.push(m%d);
-)]}
-*/
+data.forEach((d)=>{
+var temp = proto_mesh.clone();
+temp.position.set(d[0],d[1],d[2]);
+scene.add(temp);
+meshes.push(temp);
+})
 
 id = setInterval(draw, 20);
 }
@@ -111,9 +111,6 @@ function draw() {
 meshes.forEach((m)=>{
 m.position.applyEuler(new THREE.Euler(0,0.01,0,"XYZ"))
 });
-//camera.position.applyEuler(new THREE.Euler(0,0,0.01,"XYZ"))
-//light.position.applyEuler(new THREE.Euler(0,0,0.01,"XYZ"))
-//camera.lookAt(new THREE.Vector3(0, 0, 0));
 renderer.render(scene, camera);
 }
 </script>
@@ -126,9 +123,7 @@ init()
 </html>
 """
 
-start_pos = d.find("{[(")+3
-end_pos = d.find(")]}")
-proto = d[start_pos:end_pos]+"\n\n"
+proto = "data.push([%f,%f,%f]);\n"
 
 with open("try_%d/CONTCAR"%min_poscar,"r")  as f:
     contcar = f.read()
@@ -153,7 +148,7 @@ for i in range(len(data)):
 to_replace = ""
 
 for i in range(len(data)):
-    to_replace += proto%(i,i,data[i][0],data[i][1],data[i][2],i,i)
+    to_replace += proto%(data[i][0],data[i][1],data[i][2])
 
 to_save = d.replace("//HERE",to_replace)
 
