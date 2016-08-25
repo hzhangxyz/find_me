@@ -62,16 +62,19 @@ to_print += "</pre><pre>%s</pre><pre style='font-size:150%%'>\nPlot\t\t\t:\n</pr
 
 d = r"""
 <script type="text/javascript" src="three.js"></script>
+<script type="text/javascript" src="OrbitControls.js"></script>
 <script type="text/javascript">
 var scene = null;
 var camera = null;
 var renderer = null;
 var light = null;
+var controls = null;
 
 var proto_mesh = null;
 var mesh = null;
 var meshes = [];
 var id = null;
+var auto_rotate = true;
 
 function init() {
 renderer = new THREE.WebGLRenderer({
@@ -97,25 +100,30 @@ var data = [];
 
 //HERE
 
-data.forEach((d)=>{
+data.forEach(function(d){
 var temp = proto_mesh.clone();
 temp.position.set(d[0],d[1],d[2]);
 scene.add(temp);
 meshes.push(temp);
 })
 
-id = setInterval(draw, 20);
+id = setInterval(render, 20);
+
+controls = new THREE.OrbitControls(camera, renderer.domElement);
+controls.update();
+
 }
 
-function draw() {
-meshes.forEach((m)=>{
-m.position.applyEuler(new THREE.Euler(0,0.01,0,"XYZ"))
-});
-renderer.render(scene, camera);
+function render() {
+if(auto_rotate)meshes.forEach(function(m){m.position.applyEuler(new THREE.Euler(0,0.01,0,"XYZ"))});
+controls.update();
+renderer.render(scene, camera)
 }
 </script>
 
 <canvas id="mainCanvas" width="500px" height="500px" ></canvas>
+<br/><br/>
+<button onclick="auto_rotate = !auto_rotate">Auto Rotate/Stop Auto Rotate</button>
 <script>
 init()
 </script>
