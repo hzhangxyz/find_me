@@ -130,7 +130,7 @@ def main(s_id,pre_var):
 
     length = len(pre_ans)-1
     to_return = []
-    while length != 0:
+    while length > 0:
         to_return.append(pre_ans[length])
         length = length/2
     to_return.append(pre_ans[0])
