@@ -52,7 +52,7 @@ axes.set_ylim([-40,5])
 axes.set_xlim([-10,len(data)+10])
 fig.set_size_inches(10, 7)
 fig.savefig('/home/hzhang/cod/%s-%02d-mon.png'%(name,node))
-to_print += '</pre><img src=%s-%02d-mon.png width=100%%></img>\n<pre style="font-size:150%%">'%(name,node)
+to_print += '</pre><img src=%s-%02d-mon.png width=800px></img>\n<pre style="font-size:150%%">'%(name,node)
 data=map(float,sp.check_output(
     r"./en.py -n 1000 -rc",
     shell=True).replace(":","").split())
