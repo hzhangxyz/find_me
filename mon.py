@@ -80,16 +80,16 @@ renderer.setClearColor(0x000000);
 scene = new THREE.Scene();
 
 light = new THREE.PointLight( 0xFFFFFF );
-light.position.set(60,10,10);
+light.position.set(10,2,2);
 scene.add( light );
 
 //camera = new THREE.OrthographicCamera(-2, 2, 2, -2);
 camera = new THREE.PerspectiveCamera()
-camera.position.set(4, 2, 0);
+camera.position.set(1, 0.5, 0);
 camera.lookAt(new THREE.Vector3(0, 0, 0));
 scene.add(camera);
 
-proto_mesh = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), new THREE.MeshLambertMaterial({
+proto_mesh = new THREE.Mesh(new THREE.SphereGeometry(0.03, 16, 16), new THREE.MeshLambertMaterial({
 color: 0x00ff00
 }));
 
@@ -142,6 +142,13 @@ pos_d = pos.split()
 data = []
 for i in range(len(pos_d)/6):
     data.append(map(float,pos_d[i*6:i*6+3]))
+
+for i in range(len(data)):
+    for j in range(3):
+        if data[i][j] < -0.5:
+            data[i][j] += 1
+        if data[i][j] > 0.5:
+            data[i][j] -= 1
 
 to_replace = ""
 
