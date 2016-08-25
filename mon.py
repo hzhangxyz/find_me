@@ -52,11 +52,104 @@ axes.set_ylim([-40,5])
 axes.set_xlim([-10,len(data)+10])
 fig.set_size_inches(10, 7)
 fig.savefig('/home/hzhang/cod/%s-%02d-mon.png'%(name,node))
-to_print += '</pre><img src=%s-%02d-mon.png width=100%%></img>\n<pre>'%(name,node)
+to_print += '</pre><img src=%s-%02d-mon.png width=100%%></img>\n<pre style="font-size:150%%">'%(name,node)
 data=map(float,sp.check_output(
     r"./en.py -n 1000 -rc",
     shell=True).replace(":","").split())
-to_print += "Minimum Energy is\t:\t%f\n\nCONTCAR\t:\n\n"%min(data)
-to_print += sp.check_output(r"cd try_%d;cat CONTCAR"%int(data[data.index(min(data))-1]),shell=True)
+to_print += "Minimum Energy is\t:\t%f\n\nCONTCAR\t\t\t:\n"%min(data)
+min_poscar = int(data[data.index(min(data))-1])
+to_print += "</pre><pre>%s</pre><pre style='font-size:150%%'>\nPlot\t\t\t:\n</pre>"%sp.check_output(r"cd try_%d;cat CONTCAR"%min_poscar,shell=True)
+
+d = r"""
+<script type="text/javascript" src="three.js"></script>
+<script type="text/javascript">
+var scene = null;
+var camera = null;
+var renderer = null;
+var light = null;
+
+var mesh = null;
+var meshes = [];
+var id = null;
+
+function init() {
+renderer = new THREE.WebGLRenderer({
+canvas: document.getElementById('mainCanvas')
+});
+renderer.setClearColor(0x000000);
+scene = new THREE.Scene();
+
+light = new THREE.PointLight( 0xFFFFFF );
+light.position.set(60,10,10);
+scene.add( light );
+
+//camera = new THREE.OrthographicCamera(-2, 2, 2, -2);
+camera = new THREE.PerspectiveCamera()
+camera.position.set(4, 2, 0);
+camera.lookAt(new THREE.Vector3(0, 0, 0));
+scene.add(camera);
+
+proto_mesh = new THREE.Mesh(new THREE.SphereGeometry(0.1, 16, 16), new THREE.MeshLambertMaterial({
+color: 0x00ff00
+}));
+
+//HERE
+
+/*
+{[(
+m%d = proto_mesh.clone()
+m%d.position.set(%f,%f,%f);
+scene.add(m%d);
+meshes.push(m%d);
+)]}
+*/
+
+id = setInterval(draw, 20);
+}
+
+function draw() {
+meshes.forEach((m)=>{
+m.position.applyEuler(new THREE.Euler(0,0.01,0,"XYZ"))
+});
+//camera.position.applyEuler(new THREE.Euler(0,0,0.01,"XYZ"))
+//light.position.applyEuler(new THREE.Euler(0,0,0.01,"XYZ"))
+//camera.lookAt(new THREE.Vector3(0, 0, 0));
+renderer.render(scene, camera);
+}
+</script>
+
+<canvas id="mainCanvas" width="500px" height="500px" ></canvas>
+<script>
+init()
+</script>
+</body>
+</html>
+"""
+
+start_pos = d.find("{[(")+3
+end_pos = d.find(")]}")
+proto = d[start_pos:end_pos]+"\n\n"
+
+with open("try_%d/CONTCAR"%min_poscar,"r")  as f:
+    contcar = f.read()
+
+direct = contcar.find("Direct")+6
+pos_end = contcar.find("\n \n")
+
+pos = contcar[direct:pos_end]
+pos_d = pos.split()
+
+data = []
+for i in range(len(pos_d)/6):
+    data.append(map(float,pos_d[i*6:i*6+3]))
+
+to_replace = ""
+
+for i in range(len(data)):
+    to_replace += proto%(i,i,data[i][0],data[i][1],data[i][2],i,i)
+
+to_save = d.replace("//HERE",to_replace)
+
+to_print += to_save
 with open("%s/%s-%02d-mon.html"%(www,name,node),"w") as f:
     f.write(to_print)
