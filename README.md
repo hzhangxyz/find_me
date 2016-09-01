@@ -241,8 +241,6 @@ This balance is maintained automatically in Bayesian Optimization.
   - Other OM combined with ML?(PSO?)
   - Can Spearmint be separated more with VASP?
   - integrated dft and opt(OK, Think too much)
-- To learn about
-  - AIRSS?
 - Don't Do Repeatly
   - Get info of relaxation in VASP
   - Can WAVECAR be used?
