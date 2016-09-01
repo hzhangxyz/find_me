@@ -3,9 +3,9 @@
   "scale"       : 3.0,
   "mul"         : 5.0,
   "precision"   : 2,
-  "title"       : "Ag13",
-  "atoms"       : "Ag",
-  "num"         : "13",
+  "title"       : "NH2CH2COOH",
+  "atoms"       : "C N O H",
+  "num"         : "2 1 2 5",
   "maxcur"      : 20,
   "python_file" : "run_vasp.py",
   "vasp"        : "vasp.5.4.1g"
