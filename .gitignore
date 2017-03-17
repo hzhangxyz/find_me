@@ -1,8 +1,5 @@
 /output
 /error
-/POTCAR
-/POSCAR
-/config.json
-/try_*
 /*.pbs
 *.pyc
+test/*/try*/*
