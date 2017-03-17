@@ -41,4 +41,4 @@ while True:
     tag = ask("goon")
     SE = runner.get_energy(S,tag)
     for i in SE:
-        ask(repr((S,i)))
+        ask(repr(i))

@@ -56,18 +56,36 @@ class find_me_parser():
                     var[i*self.dim+1],
                     var[i*self.dim+2])
         return this_pos
+    def ana(self,t):
+        text = t.split("\n")
+        p = text.split[2:5]
+        return map(
+                float,
+                sum(
+                    map(
+                        lambda x:x.split()[:3],
+                        p
+                        ),
+                    []
+                    )
+                )
     def analyze(self,file_name):
         with open(file_name,"r") as to_ana_file:
             to_ana=to_ana_file.read()
-            temp=to_ana.find("TOTEN",0)
-            offset=0
-            while(temp!=-1):
-                 offset=temp+1
-                 temp=to_ana.find("TOTEN",offset)
-            if offset!=0:
-                data=float(to_ana[to_ana.find("=",offset)+1:                        \
-                    to_ana.find("eV",offset)].strip())
-            else:
-                data="2147483647"
-        return float(data)
+            temp = 0
+            ans = []
+            while True:
+                start=to_ana.find("POSITION",temp)
+                if start == -1:
+                    if temp==0:
+                        return []
+                    break
+                temp=start+1
+                end=to_ana.find("entropy",start)
+                this_t=to_ana[start:end]
+                ans.append([self.ana(this_t)])
+        en=float(this_t[this_t.find("TOTEN"):].split()[2])
+        for i in ans:
+            i.append(en)
+        return ans
     get_energy=get_energy_vasp
