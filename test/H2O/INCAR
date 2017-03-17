@@ -1,0 +1,4 @@
+IBRION  = 2
+NSW     = 1000
+LWAVE   = .FALSE.
+LCHARG  = .FALSE.

@@ -20,5 +20,4 @@ for i in range(runner.times):
     combine_E=comm.gather(SE,root=0)
     if comm_rank==0:
         for j in range(comm_size):
-            print combine_S[j]
-            print combine_E[j]
+            print combine_S[j],combine_E[j]
