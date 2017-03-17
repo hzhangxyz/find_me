@@ -26,8 +26,18 @@ comm_size = comm.Get_size()
 
 runner = find_me_parser(ask("prefix"))
 
+def check(S):
+    s = [(S[i*3+0],S[i*3+1],S[i*3+2]) for i in range(len(S)/3)]
+    for i in range(s):
+        for j in range(i):
+            if sum(map(lambda x:x*x,(s[i][k]-s[j][k] for k in range(3)))) < runner.min*runner.min:
+                return True
+    return False
+
 while True:
-    tag = ask("goon")
     S = [2*(random.random()-0.5)*runner.max for j in range(3*runner.dim)]
+    if check(S):
+        continue
+    tag = ask("goon")
     SE = runner.get_energy(S,tag)
     ask(repr((S,SE)))
