@@ -56,9 +56,8 @@ class find_me_parser():
                     var[i*self.dim+1],
                     var[i*self.dim+2])
         return this_pos
-    def ana(self,t):
-        text = t.split("\n")
-        p = text.split[2:5]
+    def ana(self,text):
+        p = text.split("\n")[2:5]
         return map(
                 float,
                 sum(
