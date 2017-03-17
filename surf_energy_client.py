@@ -27,8 +27,8 @@ comm_size = comm.Get_size()
 runner = find_me_parser(ask("prefix"))
 
 def check(S):
-    s = [(S[i*3+0],S[i*3+1],S[i*3+2]) for i in range(len(S)/3)]
-    for i in range(s):
+    s = [(S[i*3+0],S[i*3+1],S[i*3+2]) for i in range(runner.dim)]
+    for i in range(runner.dim):
         for j in range(i):
             if sum(map(lambda x:x*x,(s[i][k]-s[j][k] for k in range(3)))) < runner.min*runner.min:
                 return True
