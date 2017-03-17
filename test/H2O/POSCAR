@@ -13,9 +13,6 @@ cart
 precision       2
 times           10
 cores           1
-omega           0.3
-phig            0.4
-phip            0.4
 vars
 a       0.1     2
 b       -2      2

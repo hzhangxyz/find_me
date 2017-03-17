@@ -39,7 +39,7 @@ class find_me_parser():
         self.set_param()
         self.parse_sym()
     def get_energy_vasp(self,var,tag1,tag2):
-        this_name="try_%d_%d"%(tag1,tag2)
+        this_name=os.path.join(self.prefix,"try_%d_%d"%(tag1,tag2))
         this_pos=self.to_replace
         while this_pos.find("{")!=-1:
             starter=this_pos.find("{")
@@ -52,13 +52,13 @@ class find_me_parser():
             this_pos="%s%s%s"%(this_pos[:starter],calc_res,this_pos[ender+1:])
         shutil.rmtree(this_name,ignore_errors=True)
         os.makedirs(this_name)
-        shutil.copy(os.path.join(self.prefix,"INCAR"),os.path.join(self.prefix,this_name,"INCAR"))
-        shutil.copy(os.path.join(self.prefix,"POTCAR"),os.path.join(self.prefix,this_name,"POTCAR"))
-        shutil.copy(os.path.join(self.prefox,"KPOINTS"),os.path.join(self.prefix,this_name,"KPOINT"))
-        with open(os.path.join(self.prefix,this_name,"POSCAR"),"w") as this_pos_file:
+        shutil.copy(os.path.join(self.prefix,"INCAR"),os.path.join(this_name,"INCAR"))
+        shutil.copy(os.path.join(self.prefix,"POTCAR"),os.path.join(this_name,"POTCAR"))
+        shutil.copy(os.path.join(self.prefix,"KPOINTS"),os.path.join(this_name,"KPOINT"))
+        with open(os.path.join(this_name,"POSCAR"),"w") as this_pos_file:
             this_pos_file.write(this_pos)
-        os.system("cd %s;vasp_without_mpi 1>output"%os.path.join(self.prefix,this_name))
-        with open(os.path.join(self.prefix,this_name,"OUTCAR"),"r") as to_ana_file:
+        os.system("cd %s;vasp_without_mpi 1>output"%this_name)
+        with open(os.path.join(this_name,"OUTCAR"),"r") as to_ana_file:
             to_ana=to_ana_file.read()
             temp=to_ana.find("TOTEN",0)
             offset=0
