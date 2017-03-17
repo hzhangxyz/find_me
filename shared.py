@@ -27,29 +27,21 @@ class find_me_parser():
                     temp = ""
             else:
                 break
-    def parse_sym(self):
-        raw_sym_table = self.control[self.control.index("vars")+1:]
-        self.dim = len(raw_sym_table)/3
-        self.sym_table=[raw_sym_table[3*i] for i in range(self.dim)]
-        self.sym_region=[[float(raw_sym_table[3*i+1]),
-            float(raw_sym_table[3*i+2])] for i in range(self.dim)]
+    def count_dim(self):
+        self.dim = sum(map(int,self.to_replace.split("\n")[-3].split()))
     def __init__(self,prefix):
         self.prefix = prefix
         self.get_poscar()
         self.set_param()
-        self.parse_sym()
+        self.count_dim()
     def get_energy_vasp(self,var,tag):
         this_name=os.path.join(self.prefix,"try_%s"%tag)
         this_pos=self.to_replace
-        while this_pos.find("{")!=-1:
-            starter=this_pos.find("{")
-            ender=this_pos.find("}")
-            to_calc=this_pos[starter+1:ender]
-            for i in range(self.dim):
-                to_calc=to_calc.replace("(%s)"%self.sym_table[i],
-                    "(%%.%df)"%self.precision%var[i])
-            calc_res="%%.%df"%self.precision%eval(to_calc)
-            this_pos="%s%s%s"%(this_pos[:starter],calc_res,this_pos[ender+1:])
+        for i in range(self.dim):
+            this_pos += "%%.%(p)df %%.%(p)df %%.%(p)df\n"%{"p":self.precision}%(
+                    var[i*self.dim+0],
+                    var[i*self.dim+1],
+                    var[i*self.dim+2])
         shutil.rmtree(this_name,ignore_errors=True)
         os.makedirs(this_name)
         shutil.copy(os.path.join(self.prefix,"INCAR"),os.path.join(this_name,"INCAR"))

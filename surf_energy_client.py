@@ -28,7 +28,6 @@ runner = find_me_parser(ask("prefix"))
 
 while True:
     tag = ask("goon")
-    S = [random.random()*(runner.sym_region[j][1]-runner.sym_region[j][0])+
-        runner.sym_region[j][0] for j in range(runner.dim)]
+    S = [2*(random.random()-0.5)*runner.max for j in range(3*runner.dim)]
     SE = runner.get_energy(S,tag)
     ask(repr((S,SE)))
