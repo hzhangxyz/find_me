@@ -12,7 +12,7 @@ port = int(sys.argv[2])
 def ask(name):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect(('127.0.0.1',port))
+        s.connect((addr,port))
         s.send(name)
         d = s.recv(1024)
         s.close()
