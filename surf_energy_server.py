@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
-import os
 import sys
 import socket
 
-prefix = os.curdir if len(sys.argv)==1 else sys.argv[1]
+prefix = sys.argv[1]
+port   = int(sys.argv[2])
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-s.bind(('0.0.0.0', 9999))
+s.bind(('0.0.0.0', port))
 s.listen(1024)
 
 i = 0
@@ -22,6 +22,8 @@ while True:
     else:
         sock.send("T")
         print t
+        with open("output","a") as f:
+            f.write("%s\n"%t)
     sock.close()
 
 

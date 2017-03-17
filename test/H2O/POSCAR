@@ -10,7 +10,7 @@ cart
 {(a)}   0.00    0.00
 {(b)}   {(c)}   0.00
 {{
-precision       2
+precision       6
 times           1
 cores           1
 vars

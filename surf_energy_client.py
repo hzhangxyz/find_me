@@ -1,14 +1,18 @@
 #!/usr/bin/env pyhton
 
+import sys
 import random
 import socket
 import mpi4py.MPI as MPI
 from shared import find_me_parser
 
+addr = sys.argv[1]
+port = int(sys.argv[2])
+
 def ask(name):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        s.connect(('127.0.0.1',9999))
+        s.connect(('127.0.0.1',port))
         s.send(name)
         d = s.recv(1024)
         s.close()

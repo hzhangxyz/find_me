@@ -39,7 +39,7 @@ class find_me_parser():
         self.set_param()
         self.parse_sym()
     def get_energy_vasp(self,var,tag):
-        this_name=os.path.join(self.prefix,"try_%d"%tag)
+        this_name=os.path.join(self.prefix,"try_%s"%tag)
         this_pos=self.to_replace
         while this_pos.find("{")!=-1:
             starter=this_pos.find("{")
