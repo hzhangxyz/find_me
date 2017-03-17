@@ -35,9 +35,10 @@ def check(S):
     return False
 
 while True:
-    S = [2*(random.random()-0.5)*runner.max for j in range(3*runner.dim)]
+    S = [2*(random.random()-0.5)*runner.max for i in range(3*runner.dim)]
     if check(S):
         continue
     tag = ask("goon")
     SE = runner.get_energy(S,tag)
-    ask(repr((S,SE)))
+    for i in SE:
+        ask(repr((S,i)))

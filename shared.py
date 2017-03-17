@@ -36,21 +36,28 @@ class find_me_parser():
         self.count_dim()
     def get_energy_vasp(self,var,tag):
         this_name=os.path.join(self.prefix,"try_%s"%tag)
-        this_pos=self.to_replace
-        for i in range(self.dim):
-            this_pos += "%%.%(p)df %%.%(p)df %%.%(p)df\n"%{"p":self.precision}%(
-                    var[i*self.dim+0],
-                    var[i*self.dim+1],
-                    var[i*self.dim+2])
+        self.copy_data(this_name,var)
+        os.system("cd %s;vasp_without_mpi 1>output"%this_name)
+        ans = self.analyze(os.path.join(this_name,"OUTCAR"))
+        return ans
+    def copy_data(self,this_name,var):
         shutil.rmtree(this_name,ignore_errors=True)
         os.makedirs(this_name)
         shutil.copy(os.path.join(self.prefix,"INCAR"),os.path.join(this_name,"INCAR"))
         shutil.copy(os.path.join(self.prefix,"POTCAR"),os.path.join(this_name,"POTCAR"))
         shutil.copy(os.path.join(self.prefix,"KPOINTS"),os.path.join(this_name,"KPOINT"))
         with open(os.path.join(this_name,"POSCAR"),"w") as this_pos_file:
-            this_pos_file.write(this_pos)
-        os.system("cd %s;vasp_without_mpi 1>output"%this_name)
-        with open(os.path.join(this_name,"OUTCAR"),"r") as to_ana_file:
+            this_pos_file.write(self.get_this_pos(var))
+    def get_this_pos(self,var):
+        this_pos=self.to_replace
+        for i in range(self.dim):
+            this_pos += "%%.%(p)df %%.%(p)df %%.%(p)df\n"%{"p":self.precision}%(
+                    var[i*self.dim+0],
+                    var[i*self.dim+1],
+                    var[i*self.dim+2])
+        return this_pos
+    def analyze(self,file_name):
+        with open(file_name,"r") as to_ana_file:
             to_ana=to_ana_file.read()
             temp=to_ana.find("TOTEN",0)
             offset=0
